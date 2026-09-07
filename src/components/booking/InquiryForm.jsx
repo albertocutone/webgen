@@ -45,7 +45,7 @@ function DirectContacts() {
  * configured and unconfigured paths without touching build config.
  */
 export default function InquiryForm({
-  accessKey = WEB3FORMS_KEY,
+  web3formsKey = WEB3FORMS_KEY,
   turnstileSiteKey = TURNSTILE_SITE_KEY,
   submit = submitInquiry,
 }) {
@@ -59,7 +59,7 @@ export default function InquiryForm({
   const [turnstileToken, setTurnstileToken] = useState('')
   const errorSummaryRef = useRef(null)
 
-  const configured = Boolean(accessKey)
+  const configured = Boolean(web3formsKey)
 
   function update(field, value) {
     setValues((prev) => ({ ...prev, [field]: value }))
@@ -88,7 +88,7 @@ export default function InquiryForm({
 
     setStatus('submitting')
     try {
-      await submit(values, { accessKey, turnstileToken })
+      await submit(values, { accessKey: web3formsKey, turnstileToken })
       setStatus('success')
       setValues(EMPTY_INQUIRY)
     } catch {

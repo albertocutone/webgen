@@ -37,10 +37,13 @@ function loadTurnstileScript() {
  */
 export default function TurnstileWidget({ siteKey, onToken, onError }) {
   const containerRef = useRef(null)
-  // Kept in a ref so the effect does not re-run when the callbacks change
-  // identity, which would re-render the widget on every keystroke.
+  // Kept in a ref so the effect below does not re-run when the callbacks
+  // change identity, which would tear down and re-render the widget on every
+  // keystroke. Updated in an effect, never during render.
   const handlers = useRef({ onToken, onError })
-  handlers.current = { onToken, onError }
+  useEffect(() => {
+    handlers.current = { onToken, onError }
+  })
 
   useEffect(() => {
     if (!siteKey) return

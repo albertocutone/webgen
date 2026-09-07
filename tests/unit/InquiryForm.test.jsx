@@ -12,7 +12,7 @@ function setup({ submit = jest.fn().mockResolvedValue({ success: true }), ...pro
   render(
     <LocaleProvider>
       <MemoryRouter>
-        <InquiryForm accessKey="test-key" turnstileSiteKey="" submit={submit} {...props} />
+        <InquiryForm web3formsKey="test-key" turnstileSiteKey="" submit={submit} {...props} />
       </MemoryRouter>
     </LocaleProvider>,
   )
@@ -157,7 +157,7 @@ describe('InquiryForm submission', () => {
     render(
       <LocaleProvider>
         <MemoryRouter>
-          <InquiryForm accessKey="" turnstileSiteKey="" submit={jest.fn()} />
+          <InquiryForm web3formsKey="" turnstileSiteKey="" submit={jest.fn()} />
         </MemoryRouter>
       </LocaleProvider>,
     )
