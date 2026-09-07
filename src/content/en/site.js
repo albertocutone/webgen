@@ -106,6 +106,33 @@ export default {
     label: 'Cookie notice',
   },
 
+  faq: {
+    heading: 'Frequently asked questions',
+    // PLACEHOLDER answers — to be confirmed by the owner (docs/CONTENT.md).
+    items: [
+      {
+        q: 'What are the check-in and check-out times?',
+        a: 'Check-in is from 15:00 to 20:00 and check-out by 10:00. Write to us if you need different times — we try to be flexible.',
+      },
+      {
+        q: 'Are pets allowed?',
+        a: 'Yes, your animals are welcome at no extra charge. The grounds are large and fenced.',
+      },
+      {
+        q: 'Is there parking?',
+        a: 'Yes, free private parking within the property.',
+      },
+      {
+        q: 'Can the whole property be booked?',
+        a: 'Yes, the masseria can be reserved exclusively for weddings and private events. Mention it in your enquiry.',
+      },
+      {
+        q: 'How is a booking confirmed?',
+        a: 'Send us your dates: we reply with availability and a quote, and confirm by email.',
+      },
+    ],
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'About Us',

@@ -106,6 +106,33 @@ export default {
     label: 'Avviso sui cookie',
   },
 
+  faq: {
+    heading: 'Domande frequenti',
+    // PLACEHOLDER answers — to be confirmed by the owner (docs/CONTENT.md).
+    items: [
+      {
+        q: 'A che ora sono il check-in e il check-out?',
+        a: 'Il check-in è dalle 15:00 alle 20:00, il check-out entro le 10:00. Per orari diversi scrivici: cerchiamo sempre di essere flessibili.',
+      },
+      {
+        q: 'Sono ammessi gli animali?',
+        a: 'Sì, i vostri animali sono i benvenuti senza supplemento. La tenuta è ampia e recintata.',
+      },
+      {
+        q: 'C’è parcheggio?',
+        a: 'Sì, parcheggio privato gratuito all’interno della proprietà.',
+      },
+      {
+        q: 'È possibile affittare l’intera struttura?',
+        a: 'Sì, la masseria può essere riservata in esclusiva per matrimoni ed eventi privati. Indicalo nella richiesta di prenotazione.',
+      },
+      {
+        q: 'Come si conferma una prenotazione?',
+        a: 'Inviaci una richiesta con le tue date: ti rispondiamo con disponibilità e preventivo, e la conferma avviene via email.',
+      },
+    ],
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'Chi Siamo',
