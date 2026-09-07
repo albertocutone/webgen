@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Masseria Mastrangelo — marketing site and booking-inquiry funnel (Phase 1)",
+  "description": "Masseria Mastrangelo \u2014 marketing site and booking-inquiry funnel (Phase 1)",
   "license": "MIT",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/postbuild.mjs",
+    "build": "vite build && node scripts/postbuild.mjs && node scripts/generate-sitemap.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",

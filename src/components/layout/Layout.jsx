@@ -6,6 +6,8 @@ import CookieBanner from '../overlays/CookieBanner.jsx'
 import WhatsAppButton from '../overlays/WhatsAppButton.jsx'
 import { useLocale } from '../../hooks/useLocale.js'
 import { useCookieConsent } from '../../hooks/useCookieConsent.jsx'
+import { ROUTES } from '../../routes.js'
+import Seo from '../common/Seo.jsx'
 
 /**
  * A client-side route change does not reset scroll the way a document
@@ -21,7 +23,13 @@ function useScrollToTopOnNavigate() {
 export default function Layout() {
   const { t } = useLocale()
   const { needsDecision } = useCookieConsent()
+  const { pathname } = useLocation()
   useScrollToTopOnNavigate()
+
+  // Unknown paths render the 404 page; give it its own metadata rather than
+  // inheriting whatever the previous route set.
+  const route = ROUTES.find((r) => r.path === pathname)
+  const routeId = route?.id ?? 'notFound'
 
   return (
     // The cookie banner is fixed to the bottom, so without matching padding it
@@ -36,6 +44,8 @@ export default function Layout() {
       >
         {t.actions.skipToContent}
       </a>
+
+      <Seo routeId={routeId} path={route?.path ?? pathname} />
 
       <Header />
 
