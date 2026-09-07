@@ -27,3 +27,6 @@ pnpm-debug.log*
 # Tooling / OS
 .eslintcache
 .DS_Store
+
+# Playwright / visual review
+screenshots/
