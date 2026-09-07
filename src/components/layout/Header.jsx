@@ -57,7 +57,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
         <Link
           to="/"
-          className="whitespace-nowrap text-xl leading-none text-olive-700 md:text-2xl"
+          className="whitespace-nowrap text-base leading-none text-olive-700 sm:text-xl md:text-2xl"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           {t.siteName}
@@ -82,7 +82,7 @@ export default function Header() {
 
           <Link
             to={BOOKING_PATH}
-            className="rounded-full bg-terracotta-600 px-4 py-2 text-sm font-medium whitespace-nowrap text-limestone-50 transition-colors hover:bg-terracotta-700"
+            className="rounded-full bg-terracotta-600 px-3 py-2 text-sm font-medium whitespace-nowrap text-limestone-50 transition-colors hover:bg-terracotta-700 sm:px-4"
           >
             {t.actions.bookNow}
           </Link>
