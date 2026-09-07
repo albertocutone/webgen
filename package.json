@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Masseria Mastrangelo — marketing site and booking-inquiry funnel (Phase 1)",
+  "description": "Masseria Mastrangelo \u2014 marketing site and booking-inquiry funnel (Phase 1)",
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -19,7 +19,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "verify": "npm run lint && npm run format:check && npm test && npm run build"
   },
   "dependencies": {
     "react": "^19.2.0",
