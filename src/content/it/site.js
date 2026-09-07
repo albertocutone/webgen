@@ -156,7 +156,7 @@ export default {
     // listing (September 2026). Capacities follow standard hotel terminology
     // for double/triple; the family room is to be confirmed (docs/CONTENT.md).
     intro:
-      'Cinque camere nella masseria, tutte con Wi-Fi gratuito, aria condizionata e colazione inclusa. Parcheggio in struttura e animali benvenuti.',
+      'Tutte le camere hanno Wi-Fi gratuito, aria condizionata e colazione inclusa. Il parcheggio è in struttura e gli animali sono benvenuti.',
     guestsLabel: 'ospiti',
     enquire: 'Richiedi',
     amenitiesHeading: 'Servizi',

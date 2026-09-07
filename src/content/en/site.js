@@ -156,7 +156,7 @@ export default {
     // listing (September 2026). Capacities follow standard hotel terminology
     // for double/triple; the family room is to be confirmed (docs/CONTENT.md).
     intro:
-      'Five rooms in the farmhouse, all with free Wi-Fi, air conditioning and breakfast included. On-site parking, and pets are welcome.',
+      'Every room has free Wi-Fi, air conditioning and breakfast included. Parking is on site and pets are welcome.',
     guestsLabel: 'guests',
     enquire: 'Enquire',
     amenitiesHeading: 'Amenities',
