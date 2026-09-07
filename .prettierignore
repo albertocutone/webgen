@@ -5,3 +5,7 @@ coverage/
 playwright-report/
 test-results/
 package-lock.json
+
+# Written by scripts/optimize-images.mjs on every build; formatting it here
+# only makes the generator and the formatter fight.
+src/generated/
