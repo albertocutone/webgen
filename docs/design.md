@@ -635,44 +635,53 @@ Rendering and E2E are verified on the CI round-trip, and `deploy` gates on both.
 
 Live site: <https://albertocutone.github.io/webgen/>
 
-| #   | Milestone                                     | Status         |
-| --- | --------------------------------------------- | -------------- |
-| 1   | Scaffold + CI + deploy skeleton               | ✅ Done        |
-| 2   | Layout shell — header, footer, routing        | ✅ Done        |
-| 3   | Home + Appartamenti with real content         | ⬜ Not started |
-| 4   | Inquiry form + Turnstile + consent            | ⬜ Not started |
-| 5   | Remaining pages, FAQ, WhatsApp, cookie banner | ⬜ Not started |
-| 6   | SEO, prerender, image optimisation            | ⬜ Not started |
-| 7   | Polish — Framer Motion transitions            | ⬜ Not started |
+| #   | Milestone                                     | Status                                                         |
+| --- | --------------------------------------------- | -------------------------------------------------------------- |
+| 1   | Scaffold + CI + deploy skeleton               | ✅ Done                                                        |
+| 2   | Layout shell — header, footer, routing        | ✅ Done                                                        |
+| 3   | Home + Appartamenti with real content         | ⬜ Not started                                                 |
+| 4   | Inquiry form + Turnstile + consent            | ✅ Done                                                        |
+| 5   | Remaining pages, FAQ, WhatsApp, cookie banner | ✅ Done                                                        |
+| 6   | SEO, prerender, image optimisation            | 🟡 Prerender + meta + sitemap done; images pending photography |
+| 7   | Polish — Framer Motion transitions            | ⬜ Not started                                                 |
 
 ### Requirement coverage
 
-| ID  | Requirement                   | Status |
-| --- | ----------------------------- | ------ |
-| F1  | Multi-page nav                | ✅     |
-| F2  | Inquiry form emails owner     | ⬜     |
-| F3  | GDPR consent + Privacy Policy | ⬜     |
-| F4  | Bot protection                | ⬜     |
-| F5  | Cookie banner                 | ⬜     |
-| F6  | Responsive layout             | ✅     |
-| F7  | WhatsApp button               | ⬜     |
-| F8  | FAQ accordion                 | ⬜     |
-| F9  | EN/IT toggle                  | ✅     |
-| F10 | Transitions                   | ⬜     |
+| ID  | Requirement                   | Status                                 |
+| --- | ----------------------------- | -------------------------------------- |
+| F1  | Multi-page nav                | ✅                                     |
+| F2  | Inquiry form emails owner     | 🟡 Built; needs the live Web3Forms key |
+| F3  | GDPR consent + Privacy Policy | ✅                                     |
+| F4  | Bot protection                | 🟡 Built; needs the live Turnstile key |
+| F5  | Cookie banner                 | ✅                                     |
+| F6  | Responsive layout             | ✅                                     |
+| F7  | WhatsApp button               | 🟡 Built; needs the real number        |
+| F8  | FAQ accordion                 | ✅                                     |
+| F9  | EN/IT toggle                  | ✅                                     |
+| F10 | Transitions                   | ⬜                                     |
 
 ### Blocked / awaiting input
 
-- **Venue photography** — owner to export from the Google Business Profile into `public/images/`.
-  Building against placeholders until then; see `docs/CONTENT.md`.
-- **Custom domain**, room inventory, pricing visibility, analytics provider — see §10 open questions.
+| What                          | Needed from you                                               | Blocks                                                                                                    |
+| ----------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Venue photography**         | Export from the Google Business Profile into `public/images/` | M3 hero and room imagery; the image-optimisation half of M6                                               |
+| **`VITE_WEB3FORMS_KEY`**      | Web3Forms access key, added as a GitHub Actions secret        | F2 — the form is built and tested but cannot deliver mail; it currently shows the direct-contact fallback |
+| **`VITE_TURNSTILE_SITE_KEY`** | Cloudflare Turnstile site key                                 | F4 — bot protection is wired but inactive                                                                 |
+| **Real contact details**      | Email, phone and WhatsApp number                              | `src/lib/constants.js` still holds placeholders (`+39 000 000 0000`)                                      |
+| **Owner copy**                | Real page text and FAQ answers                                | All page leads and FAQ answers are placeholders                                                           |
+| **Custom domain**             | Domain name and DNS access                                    | `public/CNAME`, and the `SITE_URL` used by canonicals and the sitemap                                     |
+| **Room inventory / pricing**  | How many units, and whether prices are public                 | M3 Appartamenti page structure                                                                            |
 
 ---
 
 ## Changelog
 
-| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-09-07 | **M2 complete.** React Router with 9 routes + 404, declared once in `src/routes.js`. Layout with skip link and landmarks; header with desktop nav, accessible mobile overlay and IT/EN toggle; footer. IT/EN content bundles with key-parity test. Fixed header wrapping, a 1280px desktop overflow and a 390px mobile overflow (all three found by reviewing CI screenshots); added an E2E no-horizontal-overflow guard. |
-| 2026-09-07 | **M1 complete.** Vite 7 + React 19 scaffold; Tailwind v4 with masseria design tokens; ESLint 9 (pinned for jsx-a11y) + Prettier; Jest 30 + RTL; Playwright (Chromium + WebKit); GitHub Actions CI with Pages deploy, SPA 404 fallback and screenshot artifacts. Site live and verified rendering.                                                                                                                         |
-| 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order                                                                                                                                                                                                                                                       |
-| —          | Initial draft                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-07 | **M6 (SEO) complete.** Per-route titles/descriptions derived from page copy and clamped to Google's limits, Open Graph, canonical, LodgingBusiness JSON-LD, generated `sitemap.xml` + `robots.txt`. Every route is prerendered to static HTML at build time, emitted at both `/path` and `/path/` so canonicals never point at a redirect. Guarded by a Playwright project running with JavaScript disabled. Live site verified serving prerendered HTML on all routes. |
+| 2026-09-07 | **M5 complete.** EU cookie banner (equal-weight accept/decline, consent persisted, layout padding so it never covers content), floating WhatsApp button (plain `wa.me` link — no SDK, no cookies), FAQ accordion on native `<details>` so answers stay crawlable while collapsed.                                                                                                                                                                                       |
+| 2026-09-07 | **M4 complete.** Booking inquiry form: pure reusable validation, labelled controls, `aria-invalid`/`aria-describedby`, focusable error summary, GDPR consent unticked by default above submit, Turnstile widget, Web3Forms client treating `200 {success:false}` as failure, and a direct-contact fallback so a failed send never loses an enquiry. Restored missing Italian accents and added a guard test.                                                            |
+| 2026-09-07 | **M2 complete.** React Router with 9 routes + 404, declared once in `src/routes.js`. Layout with skip link and landmarks; header with desktop nav, accessible mobile overlay and IT/EN toggle; footer. IT/EN content bundles with key-parity test. Fixed header wrapping, a 1280px desktop overflow and a 390px mobile overflow (all three found by reviewing CI screenshots); added an E2E no-horizontal-overflow guard.                                               |
+| 2026-09-07 | **M1 complete.** Vite 7 + React 19 scaffold; Tailwind v4 with masseria design tokens; ESLint 9 (pinned for jsx-a11y) + Prettier; Jest 30 + RTL; Playwright (Chromium + WebKit); GitHub Actions CI with Pages deploy, SPA 404 fallback and screenshot artifacts. Site live and verified rendering.                                                                                                                                                                       |
+| 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order                                                                                                                                                                                                                                                                                                     |
+| —          | Initial draft                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
