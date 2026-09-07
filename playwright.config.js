@@ -26,8 +26,15 @@ export default defineConfig({
   },
 
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile', use: { ...devices['iPhone 13'] } },
+    { name: 'desktop', use: { ...devices['Desktop Chrome'] }, testIgnore: /nojs\.spec\.js/ },
+    { name: 'mobile', use: { ...devices['iPhone 13'] }, testIgnore: /nojs\.spec\.js/ },
+    // Approximates a crawler that does not execute JavaScript, which is the
+    // whole point of prerendering (design §7).
+    {
+      name: 'nojs',
+      testMatch: /nojs\.spec\.js/,
+      use: { ...devices['Desktop Chrome'], javaScriptEnabled: false },
+    },
   ],
 
   webServer: {

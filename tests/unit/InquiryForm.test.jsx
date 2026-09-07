@@ -110,11 +110,21 @@ describe('InquiryForm validation', () => {
     )
   })
 
+  it('moves focus to the error summary so it is announced', async () => {
+    const { user } = setup()
+
+    await user.click(screen.getByRole('button', { name: c.submit }))
+
+    await waitFor(() => expect(screen.getByRole('alert')).toHaveFocus())
+  })
+
   it('clears a field error once the user edits that field', async () => {
     const { user } = setup()
 
     await user.click(screen.getByRole('button', { name: c.submit }))
-    await screen.findByRole('alert')
+    // Focus is moved to the summary in a requestAnimationFrame. Typing before
+    // that lands lets the focus jump swallow the keystroke, so wait for it.
+    await waitFor(() => expect(screen.getByRole('alert')).toHaveFocus())
 
     await user.type(screen.getByLabelText(new RegExp(c.labels.name)), 'G')
 
