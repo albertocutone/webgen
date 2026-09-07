@@ -97,6 +97,15 @@ export default {
     notConfigured: 'The form is not connected yet. In the meantime, contact us directly:',
   },
 
+  cookies: {
+    title: 'Cookies',
+    body: 'We only use technical cookies required for the site to work. With your consent we may also use others to understand how the site is used.',
+    accept: 'Accept',
+    decline: 'Decline',
+    more: 'More information',
+    label: 'Cookie notice',
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'About Us',

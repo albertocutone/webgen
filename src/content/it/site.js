@@ -97,6 +97,15 @@ export default {
     notConfigured: 'Il modulo non è ancora collegato. Nel frattempo scrivici direttamente:',
   },
 
+  cookies: {
+    title: 'Cookie',
+    body: 'Usiamo solo cookie tecnici necessari al funzionamento del sito. Con il tuo consenso potremmo usarne altri per capire come viene usato il sito.',
+    accept: 'Accetta',
+    decline: 'Rifiuta',
+    more: 'Maggiori informazioni',
+    label: 'Avviso sui cookie',
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'Chi Siamo',

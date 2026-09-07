@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
+import CookieBanner from '../overlays/CookieBanner.jsx'
 import { useLocale } from '../../hooks/useLocale.js'
 
 /**
@@ -35,6 +36,8 @@ export default function Layout() {
       </main>
 
       <Footer />
+
+      <CookieBanner />
     </div>
   )
 }
