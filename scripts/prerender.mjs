@@ -57,13 +57,24 @@ for (const route of ROUTES) {
     .replace('__HEAD__', headFor(route.id, route.path))
     .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
 
-  const outFile =
+  // Two files per route, both byte-identical:
+  //   dist/chi-siamo.html        serves /chi-siamo   with no redirect
+  //   dist/chi-siamo/index.html  serves /chi-siamo/
+  // Static hosts otherwise 301 the bare path to the trailing-slash form, which
+  // would make every canonical URL point at a redirect. Both carry the same
+  // <link rel="canonical">, so the duplicate is resolved for search engines.
+  const targets =
     route.path === '/'
-      ? resolve(dist, 'index.html')
-      : resolve(dist, `${route.path.replace(/^\//, '')}/index.html`)
+      ? [resolve(dist, 'index.html')]
+      : [
+          resolve(dist, `${route.path.replace(/^\//, '')}.html`),
+          resolve(dist, `${route.path.replace(/^\//, '')}/index.html`),
+        ]
 
-  mkdirSync(dirname(outFile), { recursive: true })
-  writeFileSync(outFile, html)
+  for (const outFile of targets) {
+    mkdirSync(dirname(outFile), { recursive: true })
+    writeFileSync(outFile, html)
+  }
   count += 1
 }
 
