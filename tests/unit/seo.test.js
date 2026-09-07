@@ -1,4 +1,4 @@
-import { buildMeta, canonicalUrl, buildJsonLd, clamp } from '../../src/lib/seo.js'
+import { buildMeta, canonicalUrl, buildJsonLd, clamp, socialImageUrl } from '../../src/lib/seo.js'
 import { ROUTES } from '../../src/routes.js'
 
 describe('buildMeta', () => {
@@ -92,5 +92,15 @@ describe('clamp', () => {
     expect(result.endsWith('…')).toBe(true)
     // No half-words: everything before the ellipsis is a whole word.
     expect(result.slice(0, -1).trim().split(' ').pop()).toMatch(/^(alpha|beta|gamma|delta)$/)
+  })
+})
+
+describe('socialImageUrl', () => {
+  it('is absolute, as scrapers reject relative paths', () => {
+    expect(socialImageUrl('https://example.com')).toBe('https://example.com/og-image.jpg')
+  })
+
+  it('tolerates a trailing slash on the site url', () => {
+    expect(socialImageUrl('https://example.com/')).toBe('https://example.com/og-image.jpg')
   })
 })

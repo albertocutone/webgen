@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocale } from '../../hooks/useLocale.js'
-import { buildMeta, canonicalUrl } from '../../lib/seo.js'
+import { buildMeta, canonicalUrl, socialImageUrl } from '../../lib/seo.js'
 
 function upsertMeta(selector, attrs) {
   let el = document.head.querySelector(selector)
@@ -44,6 +44,14 @@ export default function Seo({ routeId, path }) {
     })
     upsertMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
     upsertMeta('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl(path) })
+    upsertMeta('meta[property="og:image"]', {
+      property: 'og:image',
+      content: socialImageUrl(),
+    })
+    upsertMeta('meta[property="og:site_name"]', {
+      property: 'og:site_name',
+      content: 'Masseria Mastrangelo',
+    })
     upsertMeta('meta[name="twitter:card"]', {
       name: 'twitter:card',
       content: 'summary_large_image',

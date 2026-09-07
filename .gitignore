@@ -41,3 +41,4 @@ public/images/*.webp
 # Generated from assets/brand/logo.jpg by scripts/build-logo.mjs
 public/favicon.png
 public/apple-touch-icon.png
+public/og-image.jpg

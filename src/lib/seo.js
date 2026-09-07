@@ -35,6 +35,11 @@ export function buildMeta(routeId, locale) {
   }
 }
 
+/** Absolute URL of the social preview card (scrapers reject relative paths). */
+export function socialImageUrl(siteUrl = SITE_URL) {
+  return `${siteUrl.replace(/\/$/, '')}/og-image.jpg`
+}
+
 export function canonicalUrl(path, siteUrl = SITE_URL) {
   const base = siteUrl.replace(/\/$/, '')
   return path === '/' ? `${base}/` : `${base}${path}`

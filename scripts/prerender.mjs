@@ -15,7 +15,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { ROUTES } from '../src/routes.js'
-import { buildMeta, canonicalUrl, buildJsonLd } from '../src/lib/seo.js'
+import { buildMeta, canonicalUrl, buildJsonLd, socialImageUrl } from '../src/lib/seo.js'
 
 const dist = resolve(process.cwd(), 'dist')
 const template = readFileSync(resolve(dist, 'index.html'), 'utf8')
@@ -40,7 +40,10 @@ function headFor(routeId, path) {
     `<meta property="og:title" content="${escapeAttr(title)}">`,
     `<meta property="og:description" content="${escapeAttr(description)}">`,
     `<meta property="og:url" content="${escapeAttr(url)}">`,
+    `<meta property="og:site_name" content="Masseria Mastrangelo">`,
+    `<meta property="og:image" content="${escapeAttr(socialImageUrl())}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:image" content="${escapeAttr(socialImageUrl())}">`,
     `<script type="application/ld+json">${jsonLd}</script>`,
   ].join('\n    ')
 }

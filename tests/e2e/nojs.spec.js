@@ -53,4 +53,27 @@ test.describe('prerendered HTML (no JavaScript)', () => {
     await expect(page.locator('h1')).toBeVisible()
     await expect(page.locator('main')).toBeVisible()
   })
+  test('the social preview image is declared and actually resolves', async ({ page, request }) => {
+    await page.goto('/')
+
+    const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content')
+    expect(ogImage).toBeTruthy()
+
+    // The tag pointed at a file that was never generated once; a declared
+    // og:image that 404s previews worse than none at all.
+    const path = new URL(ogImage).pathname.replace(/^\/webgen/, '')
+    const res = await request.get(path)
+    expect(res.status()).toBe(200)
+    expect(res.headers()['content-type']).toContain('image')
+  })
+
+  test('the favicon and apple touch icon resolve', async ({ page, request }) => {
+    await page.goto('/')
+    for (const sel of ['link[rel="icon"]', 'link[rel="apple-touch-icon"]']) {
+      const href = await page.locator(sel).getAttribute('href')
+      expect(href).toBeTruthy()
+      const res = await request.get(href.replace(/^\/webgen/, ''))
+      expect(res.status()).toBe(200)
+    }
+  })
 })

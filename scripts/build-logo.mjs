@@ -9,7 +9,7 @@
  *
  * Outputs a transparent WebP for the header plus PNG favicons.
  */
-import { mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import sharp from 'sharp'
 
@@ -61,6 +61,19 @@ await sharp(trimmed)
   .png()
   .toFile(resolve(OUT, 'favicon.png'))
 
+// Social preview card. Facebook and WhatsApp scrapers handle JPEG reliably and
+// WebP inconsistently, so this one stays JPEG. Built from the hero photograph
+// rather than the mark: a photo of the place previews far better than a logo.
+const HERO = resolve(process.cwd(), 'assets/photos/hero.jpg')
+let ogImage = 'skipped (no hero photo)'
+if (existsSync(HERO)) {
+  await sharp(HERO)
+    .resize({ width: 1200, height: 630, fit: 'cover', position: 'attention' })
+    .jpeg({ quality: 82 })
+    .toFile(resolve(OUT, 'og-image.jpg'))
+  ogImage = 'og-image.jpg'
+}
+
 console.log(
-  `logo: trimmed to ${meta.width}x${meta.height}; wrote logo.webp, favicon.png, apple-touch-icon.png`,
+  `logo: trimmed to ${meta.width}x${meta.height}; wrote logo.webp, favicon.png, apple-touch-icon.png, ${ogImage}`,
 )
