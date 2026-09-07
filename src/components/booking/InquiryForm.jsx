@@ -31,7 +31,7 @@ function DirectContacts() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {t.actions.whatsapp}
+          {t.actions.whatsappShort}
         </a>
       </li>
     </ul>

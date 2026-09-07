@@ -122,6 +122,7 @@ export default {
     openMenu: 'Apri il menu',
     closeMenu: 'Chiudi il menu',
     whatsapp: 'Scrivici su WhatsApp',
+    whatsappShort: 'WhatsApp',
     skipToContent: 'Vai al contenuto principale',
   },
 

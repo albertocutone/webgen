@@ -150,7 +150,7 @@ describe('InquiryForm submission', () => {
     await user.click(screen.getByRole('button', { name: c.submit }))
 
     expect(await screen.findByText(c.failure.title)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /wa\.me|WhatsApp/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: itContent.actions.whatsappShort })).toBeInTheDocument()
   })
 
   it('does not lose the visitor when no access key is configured', () => {

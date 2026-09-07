@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
 import CookieBanner from '../overlays/CookieBanner.jsx'
+import WhatsAppButton from '../overlays/WhatsAppButton.jsx'
 import { useLocale } from '../../hooks/useLocale.js'
 
 /**
@@ -37,6 +38,7 @@ export default function Layout() {
 
       <Footer />
 
+      <WhatsAppButton />
       <CookieBanner />
     </div>
   )

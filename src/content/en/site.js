@@ -122,6 +122,7 @@ export default {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     whatsapp: 'Message us on WhatsApp',
+    whatsappShort: 'WhatsApp',
     skipToContent: 'Skip to main content',
   },
 
