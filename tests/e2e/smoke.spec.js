@@ -106,3 +106,25 @@ test.describe('navigation', () => {
     await expect(page).toHaveURL(/\/contatti$/)
   })
 })
+test.describe('header layout', () => {
+  // scrollWidth <= clientWidth does not catch elements colliding inside a
+  // flex row: adding the logo made the CTA paint straight over the wordmark
+  // at 390px while the document itself never overflowed.
+  test('header controls never overlap each other', async ({ page }) => {
+    await page.goto('/')
+
+    const boxes = []
+    for (const locator of [
+      page.getByRole('banner').getByRole('link').first(),
+      page.getByRole('link', { name: /Prenota Ora|Book Now/ }).first(),
+    ]) {
+      boxes.push(await locator.boundingBox())
+    }
+
+    const [brand, cta] = boxes
+    expect(brand).not.toBeNull()
+    expect(cta).not.toBeNull()
+    // Horizontal separation: the brand must end before the CTA begins.
+    expect(brand.x + brand.width).toBeLessThanOrEqual(cta.x + 1)
+  })
+})

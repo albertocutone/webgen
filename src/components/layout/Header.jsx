@@ -70,8 +70,15 @@ export default function Header() {
             sizes="44px"
             className="h-7 w-auto sm:h-9 md:h-11"
           />
+          {/*
+            Below sm the mark, the wordmark, the CTA and the menu button do not
+            fit together: the wordmark cannot shrink (nowrap) so it overflowed
+            its slot and the CTA painted over it. max-sm:sr-only keeps the text
+            in the accessibility tree — the link still has a name — while
+            showing only the mark on the narrowest screens.
+          */}
           <span
-            className="whitespace-nowrap text-base leading-none text-olive-700 sm:text-xl md:text-2xl"
+            className="whitespace-nowrap text-base leading-none text-olive-700 max-sm:sr-only sm:text-xl md:text-2xl"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             {t.siteName}
