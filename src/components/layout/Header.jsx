@@ -54,7 +54,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-limestone-200 bg-limestone-50/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
         <Link
           to="/"
           className="whitespace-nowrap text-xl leading-none text-olive-700 md:text-2xl"
@@ -66,7 +66,7 @@ export default function Header() {
         {/* Desktop navigation. Eight items plus logo, toggle and CTA do not fit
             at lg (1024px) — they wrapped — so full nav starts at xl. */}
         <nav className="hidden xl:block" aria-label={t.nav.home}>
-          <ul className="flex items-center gap-5">
+          <ul className="flex items-center gap-4">
             {NAV_ROUTES.map((route) => (
               <li key={route.path}>
                 <NavLink to={route.path} className={navLinkClass} end={route.path === '/'}>

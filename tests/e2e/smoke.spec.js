@@ -25,6 +25,18 @@ test.describe('smoke', () => {
       await page.goto(path)
       await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
     })
+
+    // The header's nowrap labels cannot shrink, so a too-narrow container
+    // silently pushes content past the viewport. Nothing should scroll
+    // sideways at any supported width.
+    test(`${name} has no horizontal overflow`, async ({ page }) => {
+      await page.goto(path)
+      const overflow = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }))
+      expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth)
+    })
   }
 
   test('an unknown path renders the 404 page', async ({ page }) => {
