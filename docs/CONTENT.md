@@ -32,7 +32,7 @@ Imported from the Facebook page (September 2026) and live in
 | Phone / WhatsApp | +39 331 137 9732 (Angelo)                 |
 | Email            | masseriamastrangelo@gmail.com             |
 
-## 3. Photography
+## 3. Photography and logo
 
 Drop files into `public/images/`. The site currently ships two obvious
 placeholders (`placeholder-hero.svg`, `placeholder-room.svg`) that read
@@ -43,6 +43,8 @@ placeholders (`placeholder-hero.svg`, `placeholder-room.svg`) that read
 | Hero              | 2400 × 1350 (16:9) | The first thing visitors see; landscape, the building or grounds |
 | One per unit      | 1200 × 900 (4:3)   | Four units are listed today — see item 4                         |
 | Optional per page | 1600 × 900         | Chi Siamo, Territorio, Esperienze                                |
+
+The **logo is in** (`assets/brand/logo.jpg`) and drives the header mark, the favicon and the apple-touch-icon, all generated at build time.
 
 **Five of the owner's photographs are already in** (`assets/photos/`): the
 garden with the castle (hero), two event table settings, a produce buffet and
