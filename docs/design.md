@@ -638,7 +638,7 @@ Live site: <https://albertocutone.github.io/webgen/>
 | #   | Milestone                                     | Status         |
 | --- | --------------------------------------------- | -------------- |
 | 1   | Scaffold + CI + deploy skeleton               | ✅ Done        |
-| 2   | Layout shell — header, footer, routing        | ⬜ Not started |
+| 2   | Layout shell — header, footer, routing        | ✅ Done        |
 | 3   | Home + Appartamenti with real content         | ⬜ Not started |
 | 4   | Inquiry form + Turnstile + consent            | ⬜ Not started |
 | 5   | Remaining pages, FAQ, WhatsApp, cookie banner | ⬜ Not started |
@@ -649,15 +649,15 @@ Live site: <https://albertocutone.github.io/webgen/>
 
 | ID  | Requirement                   | Status |
 | --- | ----------------------------- | ------ |
-| F1  | Multi-page nav                | ⬜     |
+| F1  | Multi-page nav                | ✅     |
 | F2  | Inquiry form emails owner     | ⬜     |
 | F3  | GDPR consent + Privacy Policy | ⬜     |
 | F4  | Bot protection                | ⬜     |
 | F5  | Cookie banner                 | ⬜     |
-| F6  | Responsive layout             | ⬜     |
+| F6  | Responsive layout             | ✅     |
 | F7  | WhatsApp button               | ⬜     |
 | F8  | FAQ accordion                 | ⬜     |
-| F9  | EN/IT toggle                  | ⬜     |
+| F9  | EN/IT toggle                  | ✅     |
 | F10 | Transitions                   | ⬜     |
 
 ### Blocked / awaiting input
@@ -670,8 +670,9 @@ Live site: <https://albertocutone.github.io/webgen/>
 
 ## Changelog
 
-| Date       | Change                                                                                                                                                                                                                                                                                            |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-09-07 | **M1 complete.** Vite 7 + React 19 scaffold; Tailwind v4 with masseria design tokens; ESLint 9 (pinned for jsx-a11y) + Prettier; Jest 30 + RTL; Playwright (Chromium + WebKit); GitHub Actions CI with Pages deploy, SPA 404 fallback and screenshot artifacts. Site live and verified rendering. |
-| 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order                                                                                                                               |
-| —          | Initial draft                                                                                                                                                                                                                                                                                     |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-07 | **M2 complete.** React Router with 9 routes + 404, declared once in `src/routes.js`. Layout with skip link and landmarks; header with desktop nav, accessible mobile overlay and IT/EN toggle; footer. IT/EN content bundles with key-parity test. Fixed header wrapping, a 1280px desktop overflow and a 390px mobile overflow (all three found by reviewing CI screenshots); added an E2E no-horizontal-overflow guard. |
+| 2026-09-07 | **M1 complete.** Vite 7 + React 19 scaffold; Tailwind v4 with masseria design tokens; ESLint 9 (pinned for jsx-a11y) + Prettier; Jest 30 + RTL; Playwright (Chromium + WebKit); GitHub Actions CI with Pages deploy, SPA 404 fallback and screenshot artifacts. Site live and verified rendering.                                                                                                                         |
+| 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order                                                                                                                                                                                                                                                       |
+| —          | Initial draft                                                                                                                                                                                                                                                                                                                                                                                                             |
