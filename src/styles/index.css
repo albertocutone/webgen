@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens — a Puglian masseria palette: limestone walls, olive groves,
+ * terracotta roofs. Tailwind v4 is configured in CSS, so these @theme entries
+ * generate the utilities (bg-limestone-50, text-olive-700, ...) directly.
+ */
+@theme {
+  /* Warm off-white stone — page and section backgrounds */
+  --color-limestone-50: #faf8f4;
+  --color-limestone-100: #f2ede4;
+  --color-limestone-200: #e5dccd;
+  --color-limestone-300: #d3c5ae;
+
+  /* Olive groves — primary brand colour */
+  --color-olive-400: #9aa87a;
+  --color-olive-500: #7d8c5c;
+  --color-olive-600: #64724a;
+  --color-olive-700: #4d583a;
+  --color-olive-800: #39422c;
+
+  /* Terracotta — CTAs and accents only, used sparingly */
+  --color-terracotta-400: #d08a63;
+  --color-terracotta-500: #c06b3e;
+  --color-terracotta-600: #a35630;
+  --color-terracotta-700: #834526;
+
+  /* Warm neutrals for body copy */
+  --color-stone-ink: #2b2723;
+  --color-stone-muted: #6b6259;
+
+  /* Typography: a humanist serif for display, system sans for UI */
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Base element defaults */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-limestone-50);
+    color: var(--color-stone-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Keep keyboard focus clearly visible — WCAG 2.1 AA (design §2) */
+  :focus-visible {
+    outline: 2px solid var(--color-terracotta-600);
+    outline-offset: 2px;
+  }
+}
+
+/* Respect users who ask for reduced motion (Framer Motion honours this too) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
