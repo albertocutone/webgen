@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Masseria Mastrangelo \u2014 marketing site and booking-inquiry funnel (Phase 1)",
+  "description": "Masseria Mastrangelo — marketing site and booking-inquiry funnel (Phase 1)",
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -25,6 +25,7 @@
     "build:ssr": "vite build --ssr src/entry-server.jsx --outDir dist-ssr"
   },
   "dependencies": {
+    "framer-motion": "^13.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.18.3"

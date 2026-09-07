@@ -8,6 +8,7 @@ import { useLocale } from '../../hooks/useLocale.js'
 import { useCookieConsent } from '../../hooks/useCookieConsent.jsx'
 import { ROUTES } from '../../routes.js'
 import Seo from '../common/Seo.jsx'
+import PageTransition from './PageTransition.jsx'
 
 /**
  * A client-side route change does not reset scroll the way a document
@@ -50,7 +51,9 @@ export default function Layout() {
       <Header />
 
       <main id="main" className="flex-1">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
 
       <Footer />

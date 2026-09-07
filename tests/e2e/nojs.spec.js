@@ -41,4 +41,11 @@ test.describe('prerendered HTML (no JavaScript)', () => {
     // Text inside a collapsed <details> is still in the document.
     await expect(page.locator('dd').first()).not.toBeEmpty()
   })
+  test('content is visible, not just present, without JS', async ({ page }) => {
+    await page.goto('/')
+    // A page transition that starts at opacity 0 would be baked into the
+    // prerendered HTML and hide everything from non-executing crawlers.
+    await expect(page.locator('h1')).toBeVisible()
+    await expect(page.locator('main')).toBeVisible()
+  })
 })
