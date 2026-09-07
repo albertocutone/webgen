@@ -2,18 +2,18 @@
 export default {
   locale: 'en',
   siteName: 'Masseria Mastrangelo',
-  tagline: 'Stays and events in the heart of Puglia',
+  tagline: 'A farmhouse restaurant in the Matese Regional Park, below the castle of Prata Sannita',
 
   // Per-page copy, keyed by route id in src/routes.js.
   // PLACEHOLDER lead text — to be replaced with the owner's copy (docs/CONTENT.md).
   pages: {
     home: {
       title: 'Masseria Mastrangelo',
-      lead: 'A historic stone farmhouse among the olive groves, minutes from the sea.',
+      lead: 'A farmhouse among the olive groves, its garden looking onto the castle of Prata Sannita.',
     },
     chiSiamo: {
       title: 'About Us',
-      lead: 'The history of the masseria, the estate, and its ties to the land.',
+      lead: 'The masseria, the family who run it, and their ties to the Matese.',
     },
     appartamenti: {
       title: 'Apartments',
@@ -21,7 +21,7 @@ export default {
     },
     territorio: {
       title: 'The Region',
-      lead: 'Villages, beaches and flavours to discover around the masseria.',
+      lead: 'The Matese Regional Park, the village of Prata Sannita and the river Lete.',
     },
     petFriendly: {
       title: 'Pet Friendly',
@@ -29,7 +29,7 @@ export default {
     },
     esperienze: {
       title: 'Experiences',
-      lead: 'Tastings, guided visits and days out in the countryside.',
+      lead: 'Lunches and dinners in the garden, weddings, christenings and private parties.',
     },
     comeRaggiungerci: {
       title: 'Getting Here',
@@ -134,7 +134,7 @@ export default {
   },
 
   home: {
-    heroAlt: 'The masseria seen from the olive grove',
+    heroAlt: 'The masseria garden with the castle of Prata Sannita behind it',
     heroCta: 'Check availability',
     heroSecondary: 'See the apartments',
   },

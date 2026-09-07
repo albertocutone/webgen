@@ -1,1 +1,42 @@
-{}
+{
+  "buffet": {
+    "width": 900,
+    "height": 1200,
+    "widths": [
+      480,
+      768
+    ]
+  },
+  "evento-giardino": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      480,
+      768
+    ]
+  },
+  "evento-tavola": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      480,
+      768
+    ]
+  },
+  "hero": {
+    "width": 1782,
+    "height": 1188,
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "terrazza": {
+    "width": 540,
+    "height": 960,
+    "widths": [
+      480
+    ]
+  }
+}

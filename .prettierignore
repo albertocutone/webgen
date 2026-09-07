@@ -1,4 +1,5 @@
 dist/
+tmp-fb/
 dist-ssr/
 coverage/
 playwright-report/

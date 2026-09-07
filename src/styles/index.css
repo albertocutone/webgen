@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
- * Design tokens — a Puglian masseria palette: limestone walls, olive groves,
+ * Design tokens — a Matese masseria palette: limestone walls, olive groves,
  * terracotta roofs. Tailwind v4 is configured in CSS, so these @theme entries
  * generate the utilities (bg-limestone-50, text-olive-700, ...) directly.
  */

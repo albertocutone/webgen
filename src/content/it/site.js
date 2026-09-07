@@ -2,18 +2,18 @@
 export default {
   locale: 'it',
   siteName: 'Masseria Mastrangelo',
-  tagline: 'Soggiorni ed eventi nel cuore della Puglia',
+  tagline: 'Agriturismo nel Parco Regionale del Matese, ai piedi del Castello di Prata Sannita',
 
   // Per-page copy, keyed by route id in src/routes.js.
   // PLACEHOLDER lead text — to be replaced with the owner's copy (docs/CONTENT.md).
   pages: {
     home: {
       title: 'Masseria Mastrangelo',
-      lead: 'Un antico casale di pietra tra gli ulivi, a pochi minuti dal mare.',
+      lead: 'Un agriturismo tra gli ulivi, con il giardino affacciato sul Castello di Prata Sannita.',
     },
     chiSiamo: {
       title: 'Chi Siamo',
-      lead: 'La storia della masseria, la tenuta e il legame con il territorio.',
+      lead: 'La masseria, la famiglia che la conduce e il legame con il Matese.',
     },
     appartamenti: {
       title: 'Appartamenti',
@@ -21,7 +21,7 @@ export default {
     },
     territorio: {
       title: 'Territorio',
-      lead: 'Borghi, spiagge e sapori da scoprire nei dintorni della masseria.',
+      lead: 'Il Parco Regionale del Matese, il borgo di Prata Sannita e il fiume Lete.',
     },
     petFriendly: {
       title: 'Pet Friendly',
@@ -29,7 +29,7 @@ export default {
     },
     esperienze: {
       title: 'Esperienze',
-      lead: 'Degustazioni, visite guidate e giornate in campagna.',
+      lead: 'Pranzi e cene nel giardino, matrimoni, battesimi e feste private.',
     },
     comeRaggiungerci: {
       title: 'Come Raggiungerci',
@@ -134,7 +134,7 @@ export default {
   },
 
   home: {
-    heroAlt: 'La masseria vista dagli ulivi',
+    heroAlt: 'Il giardino della masseria con il Castello di Prata Sannita sullo sfondo',
     heroCta: 'Richiedi disponibilità',
     heroSecondary: 'Scopri gli appartamenti',
   },

@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react'
 import { renderApp } from './renderApp.jsx'
 import itContent from '../../src/content/it/site.js'
+import imageManifest from '../../src/generated/images.json'
 
 beforeEach(() => {
   window.localStorage.clear()
@@ -22,11 +23,22 @@ describe('Home hero', () => {
     expect(hero).toHaveAttribute('fetchpriority', 'high')
   })
 
-  it('reserves the hero box to avoid layout shift', () => {
+  it('reserves the hero box using the real photo dimensions', () => {
     renderApp('/')
     const hero = screen.getByAltText(itContent.home.heroAlt)
-    expect(hero).toHaveAttribute('width', '1600')
-    expect(hero).toHaveAttribute('height', '900')
+    // Read from the manifest rather than hardcoding: swapping the photograph
+    // changes the intrinsic size, and the point of the assertion is that
+    // width/height are present and correct, not what they happen to be.
+    const { width, height } = imageManifest.hero
+    expect(hero).toHaveAttribute('width', String(width))
+    expect(hero).toHaveAttribute('height', String(height))
+  })
+
+  it('serves the hero as responsive WebP, not the placeholder', () => {
+    renderApp('/')
+    const hero = screen.getByAltText(itContent.home.heroAlt)
+    expect(hero.getAttribute('src')).toMatch(/hero-\d+\.webp$/)
+    expect(hero.getAttribute('srcset')).toContain('hero-480.webp 480w')
   })
 
   it('offers both a booking and a browse route', () => {

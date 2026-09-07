@@ -1,5 +1,5 @@
 import { getContent } from '../content/index.js'
-import { CONTACT, SITE_URL } from './constants.js'
+import { ADDRESS, CONTACT, SITE_URL } from './constants.js'
 
 /** Google truncates around these lengths; longer text is wasted. */
 const TITLE_MAX = 60
@@ -56,8 +56,11 @@ export function buildJsonLd(locale, siteUrl = SITE_URL) {
     telephone: CONTACT.phone,
     address: {
       '@type': 'PostalAddress',
-      addressRegion: 'Puglia',
-      addressCountry: 'IT',
+      streetAddress: ADDRESS.street,
+      addressLocality: ADDRESS.locality,
+      addressRegion: ADDRESS.region,
+      postalCode: ADDRESS.postalCode,
+      addressCountry: ADDRESS.country,
     },
     petsAllowed: true,
   }

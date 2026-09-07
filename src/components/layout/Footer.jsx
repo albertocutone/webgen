@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { NAV_ROUTES } from '../../routes.js'
 import { useLocale } from '../../hooks/useLocale.js'
-import { CONTACT } from '../../lib/constants.js'
+import { ADDRESS_LINE, CONTACT } from '../../lib/constants.js'
 
 export default function Footer() {
   const { t } = useLocale()
@@ -28,7 +28,7 @@ export default function Footer() {
                 {CONTACT.phone}
               </a>
             </li>
-            <li>{CONTACT.address}</li>
+            <li>{ADDRESS_LINE}</li>
           </ul>
         </div>
 

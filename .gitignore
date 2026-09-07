@@ -34,6 +34,7 @@ dist-ssr/
 
 # Facebook page export drop zone (never committed)
 tmp-fb/
-# Source photography (optimised into public/images at build time)
-assets/photos/*
-!assets/photos/.gitkeep
+# Source photography IS committed: CI regenerates the WebP variants from it,
+# and the generated manifest that tests import must match what is in the repo.
+# Only the generated variants are ignored.
+public/images/*.webp

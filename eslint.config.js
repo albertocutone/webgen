@@ -6,7 +6,17 @@ import jsxA11y from 'eslint-plugin-jsx-a11y'
 import prettier from 'eslint-config-prettier'
 
 export default [
-  { ignores: ['dist/**', 'dist-ssr/**', 'coverage/**', 'playwright-report/**', 'test-results/**'] },
+  {
+    ignores: [
+      'dist/**',
+      'dist-ssr/**',
+      'coverage/**',
+      'playwright-report/**',
+      'test-results/**',
+      // Saved Facebook page export used to import the venue's real data.
+      'tmp-fb/**',
+    ],
+  },
 
   js.configs.recommended,
 
