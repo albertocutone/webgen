@@ -30,6 +30,11 @@ export default [
       ...reactHooks.configs.recommended.rules,
       ...jsxA11y.flatConfigs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+
+      // React 19 removed PropTypes from the package entirely, so this rule
+      // would push us toward a deleted API. Prop contracts are documented in
+      // JSDoc instead; a TypeScript migration is the real fix (Phase 2).
+      'react/prop-types': 'off',
     },
   },
 
