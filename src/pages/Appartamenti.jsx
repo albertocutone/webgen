@@ -10,6 +10,7 @@ function UnitCard({ unit }) {
   return (
     <article className="overflow-hidden rounded-lg border border-limestone-200 bg-limestone-100">
       <Image
+        name={unit.id}
         src="images/placeholder-room.svg"
         alt={unit.name}
         width={800}

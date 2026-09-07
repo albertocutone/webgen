@@ -15,6 +15,7 @@ export default function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <Image
+        name="hero"
         src="images/placeholder-hero.svg"
         alt={t.home.heroAlt}
         width={1600}
