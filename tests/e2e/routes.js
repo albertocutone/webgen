@@ -1,3 +1,8 @@
-// Single source of truth for the routes that E2E and visual review walk.
-// Adding a page here gives it navigation coverage and a CI screenshot.
-export const ROUTES = [{ path: '/', name: 'home' }]
+// Derived from the app's own route table so a new page automatically gets
+// navigation coverage and a CI screenshot.
+import { ROUTES } from '../../src/routes.js'
+
+export const VISUAL_ROUTES = ROUTES.map((r) => ({
+  path: r.path,
+  name: r.path === '/' ? 'home' : r.path.replace(/^\//, ''),
+}))
