@@ -145,3 +145,30 @@ describe('useLocale', () => {
     quiet.mockRestore()
   })
 })
+
+/**
+ * Italian copy written through shell heredocs has twice lost its accents
+ * ("disponibilita", "non e ancora"), which reads as broken to the site's
+ * primary audience. This scans for the specific unaccented forms.
+ */
+describe('Italian copy quality', () => {
+  const ALL_TEXT = JSON.stringify(itContent)
+
+  it.each([
+    'disponibilita',
+    'puo essere',
+    'piu presto',
+    'un altra',
+    'non e ancora',
+    'perche',
+    'gia ',
+    'cosi ',
+    'piu tardi',
+  ])('never contains the unaccented form %p', (bad) => {
+    expect(ALL_TEXT.toLowerCase()).not.toContain(bad)
+  })
+
+  it('uses accented characters somewhere, proving encoding survived', () => {
+    expect(ALL_TEXT).toMatch(/[àèéìòùÀÈÉÌÒÙ’]/)
+  })
+})
