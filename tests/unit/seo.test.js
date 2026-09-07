@@ -49,9 +49,12 @@ describe('canonicalUrl', () => {
 })
 
 describe('buildJsonLd', () => {
-  it('describes the venue as a LodgingBusiness', () => {
+  it('describes the venue as a BedAndBreakfast with its real address', () => {
     const ld = buildJsonLd('it', 'https://example.com')
-    expect(ld['@type']).toBe('LodgingBusiness')
+    expect(ld['@type']).toBe('BedAndBreakfast')
+    expect(ld.address.addressLocality).toBe('Prata Sannita')
+    expect(ld.address.postalCode).toBe('81010')
+    expect(ld.address.addressRegion).toBe('Campania')
     expect(ld.name).toBe('Masseria Mastrangelo')
     expect(ld.url).toBe('https://example.com/')
     expect(ld.address.addressCountry).toBe('IT')
@@ -60,6 +63,21 @@ describe('buildJsonLd', () => {
 
   it('serialises to valid JSON for the script tag', () => {
     expect(() => JSON.parse(JSON.stringify(buildJsonLd('en')))).not.toThrow()
+  })
+
+  it('lists only amenities the property actually has', () => {
+    const names = buildJsonLd('it').amenityFeature.map((a) => a.name.toLowerCase())
+    expect(names).toContain('wi-fi')
+    expect(names).toContain('free parking')
+    for (const absent of ['pool', 'spa', 'gym', 'hot tub']) {
+      expect(names).not.toContain(absent)
+    }
+  })
+
+  it('declares no aggregateRating', () => {
+    // The only ratings available are Google's, which the site does not host;
+    // declaring them invites a structured-data manual action.
+    expect(buildJsonLd('it')).not.toHaveProperty('aggregateRating')
   })
 })
 

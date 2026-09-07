@@ -46,6 +46,13 @@ export default {
   },
 
   contact: {
+    directContact: {
+      heading: 'Prefer to talk to us?',
+      lead: 'For information and bookings, ask for Angelo.',
+      callLabel: 'Call',
+      whatsappLabel: 'Message on WhatsApp',
+      emailLabel: 'Send an email',
+    },
     formHeading: 'Check availability',
     required: 'required',
     optionalSuffix: '(optional)',

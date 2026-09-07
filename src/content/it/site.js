@@ -46,6 +46,13 @@ export default {
   },
 
   contact: {
+    directContact: {
+      heading: 'Preferisci parlare con noi?',
+      lead: 'Per informazioni e prenotazioni chiedi di Angelo.',
+      callLabel: 'Chiama',
+      whatsappLabel: 'Scrivi su WhatsApp',
+      emailLabel: 'Invia una email',
+    },
     formHeading: 'Richiedi disponibilità',
     required: 'obbligatorio',
     optionalSuffix: '(facoltativo)',

@@ -48,7 +48,11 @@ export function buildJsonLd(locale, siteUrl = SITE_URL) {
   const t = getContent(locale)
   return {
     '@context': 'https://schema.org',
-    '@type': 'LodgingBusiness',
+    // BedAndBreakfast is a LodgingBusiness subtype and matches how the venue
+    // is actually categorised (Google lists it as gcid:bed_and_breakfast).
+    // No aggregateRating: Google penalises self-declared ratings sourced from
+    // third-party reviews the site does not host.
+    '@type': 'BedAndBreakfast',
     name: t.siteName,
     description: t.tagline,
     url: canonicalUrl('/', siteUrl),
@@ -63,5 +67,10 @@ export function buildJsonLd(locale, siteUrl = SITE_URL) {
       addressCountry: ADDRESS.country,
     },
     petsAllowed: true,
+    starRating: { '@type': 'Rating', ratingValue: '3' },
+    priceRange: '€€',
+    amenityFeature: ['Wi-Fi', 'Breakfast', 'Air conditioning', 'Free parking', 'Pet friendly'].map(
+      (name) => ({ '@type': 'LocationFeatureSpecification', name, value: true }),
+    ),
   }
 }
