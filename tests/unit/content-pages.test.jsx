@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { renderApp } from './renderApp.jsx'
 import itContent from '../../src/content/it/site.js'
 import imageManifest from '../../src/generated/images.json'
@@ -126,5 +126,42 @@ describe('Esperienze (events)', () => {
       'href',
       '/contatti',
     )
+  })
+})
+
+describe('Territorio', () => {
+  it('lists the nearby places with their notes', () => {
+    renderApp('/territorio')
+    for (const place of itContent.area.nearby) {
+      expect(screen.getByText(place.name)).toBeInTheDocument()
+      expect(screen.getByText(place.note)).toBeInTheDocument()
+    }
+  })
+})
+
+describe('Come Raggiungerci', () => {
+  it('shows the real postal address in the page body', () => {
+    renderApp('/come-raggiungerci')
+    // Scoped to main: the footer carries the same address on every page.
+    const main = screen.getByRole('main')
+    expect(
+      within(main).getByText(/Via Portelle 17, 81010 Prata Sannita \(CE\)/),
+    ).toBeInTheDocument()
+  })
+
+  it('links out to Google Maps in a new tab', () => {
+    renderApp('/come-raggiungerci')
+    const link = screen.getByRole('link', { name: itContent.directions.mapCta })
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link.getAttribute('href')).toContain('google.com/maps')
+    expect(link.getAttribute('href')).toContain('Prata%20Sannita')
+  })
+
+  it('gives the drive times', () => {
+    renderApp('/come-raggiungerci')
+    for (const leg of itContent.directions.travel) {
+      expect(screen.getByText(leg.from)).toBeInTheDocument()
+      expect(screen.getByText(leg.time)).toBeInTheDocument()
+    }
   })
 })

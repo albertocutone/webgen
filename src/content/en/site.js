@@ -21,7 +21,7 @@ export default {
     },
     territorio: {
       title: 'The Region',
-      lead: 'The Matese Regional Park, the village of Prata Sannita and the river Lete.',
+      lead: 'The Matese, the village of Prata Sannita and its castle.',
     },
     petFriendly: {
       title: 'Pet Friendly',
@@ -214,6 +214,33 @@ export default {
       { id: 'terrazza', alt: 'The terrace with parasols and the Matese hills beyond' },
     ],
     cta: 'Tell us about your event',
+  },
+
+  area: {
+    // Places and drive times taken from the venue's Google listing
+    // (September 2026). Only verified items — nothing added from memory.
+    intro:
+      'The masseria sits in the Matese, a short walk from the village of Prata Sannita and its castle.',
+    nearbyHeading: 'Nearby',
+    nearby: [
+      { name: 'Castle of Prata Sannita', note: 'Directly across from the masseria garden.' },
+      { name: 'Matese Park', note: 'About 40 minutes by car.' },
+      { name: 'Lake Matese', note: 'One of the highest karst lakes in the Apennines.' },
+      { name: 'Campitello Matese', note: 'The ski resort on the massif.' },
+    ],
+  },
+
+  directions: {
+    intro:
+      'We are in Prata Sannita, in the province of Caserta, on the Campanian side of the Matese.',
+    addressHeading: 'Address',
+    byCarHeading: 'By car',
+    travel: [
+      { from: 'Naples Capodichino Airport', time: 'about 1 hour 6 minutes' },
+      { from: 'Matese Park', time: 'about 41 minutes' },
+    ],
+    mapCta: 'Open in Google Maps',
+    parkingNote: 'Parking is free on site.',
   },
 
   nav: {

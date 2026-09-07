@@ -21,7 +21,7 @@ export default {
     },
     territorio: {
       title: 'Territorio',
-      lead: 'Il Parco Regionale del Matese, il borgo di Prata Sannita e il fiume Lete.',
+      lead: 'Il Matese, il borgo di Prata Sannita e il suo castello.',
     },
     petFriendly: {
       title: 'Pet Friendly',
@@ -218,6 +218,31 @@ export default {
       { id: 'terrazza', alt: 'La terrazza con gli ombrelloni e le colline del Matese' },
     ],
     cta: 'Raccontaci il tuo evento',
+  },
+
+  area: {
+    // Places and drive times taken from the venue's Google listing
+    // (September 2026). Only verified items — nothing added from memory.
+    intro: 'La masseria è nel Matese, a pochi passi dal borgo di Prata Sannita e dal suo castello.',
+    nearbyHeading: 'Nei dintorni',
+    nearby: [
+      { name: 'Castello di Prata Sannita', note: 'Proprio davanti al giardino della masseria.' },
+      { name: 'Parco del Matese', note: 'Circa 40 minuti di auto.' },
+      { name: 'Lago del Matese', note: 'Uno dei laghi carsici più alti d’Appennino.' },
+      { name: 'Campitello Matese', note: 'La stazione sciistica del massiccio.' },
+    ],
+  },
+
+  directions: {
+    intro: 'Siamo a Prata Sannita, in provincia di Caserta, sul versante campano del Matese.',
+    addressHeading: 'Indirizzo',
+    byCarHeading: 'In auto',
+    travel: [
+      { from: 'Aeroporto di Napoli Capodichino', time: 'circa 1 ora e 6 minuti' },
+      { from: 'Parco del Matese', time: 'circa 41 minuti' },
+    ],
+    mapCta: 'Apri in Google Maps',
+    parkingNote: 'Il parcheggio è gratuito in struttura.',
   },
 
   nav: {
