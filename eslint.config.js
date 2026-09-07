@@ -33,10 +33,25 @@ export default [
     },
   },
 
-  // Node context: build tooling and scripts
+  // Node context, ESM: package.json sets "type": "module"
   {
     files: ['*.config.js', 'scripts/**/*.{js,mjs}'],
     languageOptions: { globals: { ...globals.node } },
+  },
+
+  // Node context, CommonJS: only .cjs escapes "type": "module"
+  {
+    files: ['**/*.cjs'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: { ...globals.node },
+    },
+  },
+
+  // Test context: Jest globals
+  {
+    files: ['tests/**/*.{js,jsx,cjs}'],
+    languageOptions: { globals: { ...globals.jest, ...globals.node } },
   },
 
   // Prettier last so it can switch off stylistic rules
