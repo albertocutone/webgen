@@ -17,7 +17,7 @@ export default {
     },
     appartamenti: {
       title: 'Appartamenti',
-      lead: "Camere e appartamenti indipendenti, oppure l'intera struttura in esclusiva.",
+      lead: 'Camere e appartamenti indipendenti, oppure l’intera struttura in esclusiva.',
     },
     territorio: {
       title: 'Territorio',

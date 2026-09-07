@@ -171,4 +171,9 @@ describe('Italian copy quality', () => {
   it('uses accented characters somewhere, proving encoding survived', () => {
     expect(ALL_TEXT).toMatch(/[àèéìòùÀÈÉÌÒÙ’]/)
   })
+  it('uses typographic apostrophes consistently, never the straight quote', () => {
+    // Mixing l'intera and l’intera looks sloppy in rendered copy.
+    const elisions = ALL_TEXT.match(/\w'\w/g) ?? []
+    expect(elisions).toEqual([])
+  })
 })
