@@ -78,7 +78,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <LanguageToggle className="hidden sm:flex" />
+          <LanguageToggle className="hidden sm:flex" testId="language-header" />
 
           <Link
             to={BOOKING_PATH}
@@ -127,7 +127,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <LanguageToggle className="px-6 pb-4 sm:hidden" />
+          <LanguageToggle className="px-6 pb-4 sm:hidden" testId="language-menu" />
         </nav>
       )}
     </header>

@@ -8,7 +8,7 @@ const FULL = { it: 'Italiano', en: 'English' }
  * IT/EN switch. Rendered as buttons in a group rather than flag images:
  * flags denote countries, not languages, and are unreadable to screen readers.
  */
-export default function LanguageToggle({ className = '' }) {
+export default function LanguageToggle({ className = '', testId }) {
   const { locale, setLocale } = useLocale()
 
   return (
@@ -16,6 +16,7 @@ export default function LanguageToggle({ className = '' }) {
       className={`flex items-center gap-1 text-sm ${className}`}
       role="group"
       aria-label="Lingua / Language"
+      data-testid={testId}
     >
       {LOCALES.map((code) => {
         const active = code === locale

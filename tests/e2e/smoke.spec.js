@@ -33,21 +33,36 @@ test.describe('smoke', () => {
   })
 })
 
+/**
+ * Below Tailwind's `sm` (640px) the header cannot fit logo + toggle + CTA +
+ * hamburger, so the language switch lives inside the overlay menu instead.
+ * Auto-detection from navigator.language means the toggle is only ever an
+ * override, so burying it there is acceptable.
+ */
+async function switchLanguage(page, isMobile, language) {
+  if (isMobile) {
+    await page.getByRole('button', { name: 'Apri il menu' }).click()
+    await page.getByTestId('language-menu').getByRole('button', { name: language }).click()
+    return
+  }
+  await page.getByTestId('language-header').getByRole('button', { name: language }).click()
+}
+
 test.describe('locale', () => {
-  test('renders Italian by default and switches to English', async ({ page }) => {
+  test('renders Italian by default and switches to English', async ({ page, isMobile }) => {
     await page.goto('/chi-siamo')
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Chi Siamo')
     await expect(page.locator('html')).toHaveAttribute('lang', 'it')
 
-    await page.getByRole('button', { name: 'English' }).first().click()
+    await switchLanguage(page, isMobile, 'English')
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('About Us')
     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
   })
 
-  test('remembers the language across a reload', async ({ page }) => {
+  test('remembers the language across a reload', async ({ page, isMobile }) => {
     await page.goto('/')
-    await page.getByRole('button', { name: 'English' }).first().click()
+    await switchLanguage(page, isMobile, 'English')
     await expect(page.locator('html')).toHaveAttribute('lang', 'en')
 
     await page.reload()
