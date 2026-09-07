@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { ROUTES } from '../../src/routes.js'
-import { buildMeta } from '../../src/lib/seo.js'
+import { buildMeta, buildJsonLd } from '../../src/lib/seo.js'
 
 /**
  * Runs with JavaScript disabled, standing in for the crawlers and social
@@ -23,10 +23,15 @@ test.describe('prerendered HTML (no JavaScript)', () => {
     })
   }
 
-  test('the home page exposes LodgingBusiness structured data', async ({ page }) => {
+  test('the home page exposes the venue as structured data', async ({ page }) => {
     await page.goto('/')
-    const ld = await page.locator('script[type="application/ld+json"]').textContent()
-    expect(JSON.parse(ld)['@type']).toBe('LodgingBusiness')
+    const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent())
+    // Derived from the source so changing the schema type cannot leave this
+    // assertion behind, as it did when LodgingBusiness became BedAndBreakfast.
+    const expected = buildJsonLd('it')
+    expect(ld['@type']).toBe(expected['@type'])
+    expect(ld.address.addressLocality).toBe(expected.address.addressLocality)
+    expect(ld.telephone).toBe(expected.telephone)
   })
 
   test('navigation links are crawlable anchors', async ({ page }) => {
