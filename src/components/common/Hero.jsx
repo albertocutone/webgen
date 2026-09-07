@@ -23,8 +23,15 @@ export default function Hero() {
         sizes="100vw"
         className="absolute inset-0 -z-10 size-full object-cover"
       />
-      {/* Scrim: keeps text legible whatever the eventual photograph looks like. */}
-      <div className="absolute inset-0 -z-10 bg-stone-ink/35" aria-hidden="true" />
+      {/*
+        Scrim: keeps text legible whatever the eventual photograph looks like.
+        A flat 35% tint was not enough over a light image, so this pairs a base
+        tint with a bottom-weighted gradient behind the copy.
+      */}
+      <div
+        className="absolute inset-0 -z-10 bg-stone-ink/45 bg-gradient-to-t from-stone-ink/70 via-stone-ink/20 to-transparent"
+        aria-hidden="true"
+      />
 
       <div className="mx-auto flex min-h-[60vh] max-w-4xl flex-col justify-center px-6 py-24 text-limestone-50 md:min-h-[70vh]">
         <h1 className="text-4xl drop-shadow-sm md:text-6xl">{t.pages.home.title}</h1>

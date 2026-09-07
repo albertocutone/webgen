@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Placeholder">
-  <rect width="1600" height="900" fill="#e5dccd"/>
-  <path d="M0 640 L280 500 L520 620 L820 430 L1120 590 L1360 480 L1600 600 L1600 900 L0 900 Z" fill="#9aa87a"/>
-  <path d="M0 730 L340 640 L680 740 L1020 650 L1340 745 L1600 690 L1600 900 L0 900 Z" fill="#64724a"/>
-  <circle cx="1280" cy="200" r="70" fill="#d3c5ae"/>
-  <g fill="#4d583a" font-family="Georgia, serif" text-anchor="middle">
-    <text x="800" y="300" font-size="52">Masseria Mastrangelo</text>
-    <text x="800" y="360" font-size="28" fill="#6b6259">PLACEHOLDER — fotografia da fornire</text>
-  </g>
+  <rect width="1600" height="900" fill="#c9bda6"/>
+  <circle cx="1300" cy="180" r="70" fill="#ddd2bb"/>
+  <path d="M0 620 L280 470 L520 600 L820 400 L1120 570 L1360 455 L1600 580 L1600 900 L0 900 Z" fill="#7d8c5c"/>
+  <path d="M0 720 L340 630 L680 735 L1020 640 L1340 740 L1600 680 L1600 900 L0 900 Z" fill="#4d583a"/>
+  <path d="M0 820 L400 780 L900 825 L1300 785 L1600 815 L1600 900 L0 900 Z" fill="#39422c"/>
+  <!-- Corner label only: centred text collided with the hero's h1 overlay. -->
+  <text x="28" y="868" font-family="Georgia, serif" font-size="22" fill="#39422c" opacity="0.75">
+    PLACEHOLDER — fotografia da fornire
+  </text>
 </svg>
