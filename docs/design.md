@@ -489,20 +489,27 @@ webgen/
 │   ├── unit/                       # Jest + React Testing Library
 │   └── e2e/                        # Playwright specs
 ├── scripts/
+│   ├── postbuild.mjs               # copies index.html -> 404.html (SPA fallback)
 │   └── generate-sitemap.mjs
 ├── index.html
 ├── package.json
 ├── vite.config.js
-├── tailwind.config.js
-├── postcss.config.js
-├── jest.config.js
+├── jest.config.cjs
+├── babel.config.cjs                # babel-jest only; Vite never reads it
 ├── playwright.config.js
 ├── eslint.config.js
+├── .prettierrc.json
+├── .nvmrc
 ├── .env.example                    # WEB3FORMS_KEY, TURNSTILE_SITE_KEY
 ├── .gitignore
 ├── LICENSE
 └── README.md
 ```
+
+**Deviation from the original tree:** Tailwind v4 is configured in CSS via `@theme` inside
+`src/styles/index.css` and loaded through `@tailwindcss/vite`, so the planned `tailwind.config.js`
+and `postcss.config.js` do not exist. Jest and Babel configs are `.cjs` because `package.json` sets
+`"type": "module"`.
 
 ### Rationale
 
@@ -584,6 +591,19 @@ flowchart LR
 | **Manual date blocking in Phase 1**    | Double-booking with OTAs                      | Explicitly out of scope; owner keeps a single master calendar until Phase 2                        |
 | **Phase 2 never happens**              | Site stays a brochure                         | Acceptable — Phase 1 is independently valuable and complete                                        |
 
+### Build Environment Constraints (discovered during M1)
+
+The development machine is a managed laptop with endpoint security that blocks unsigned and
+system-level binaries. Two consequences shape the workflow:
+
+| Constraint                         | Evidence                                                                                                 | Workaround                                                                                                                                               |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Homebrew cannot install**        | `touch /opt/homebrew/Cellar` → `Operation not permitted` (EPERM) despite `albertocutone:admin` ownership | Node 24.20.0 installed user-local to `~/.local/node` from the official tarball, SHA-256 verified. Removable with `rm -rf ~/.local/node`                  |
+| **Playwright browsers are killed** | Chromium `kill EPERM`, WebKit `Killed: 9` (exit 137), unchanged with the tool sandbox disabled           | **E2E is CI-only.** The `e2e` job uploads `screenshots/` as an artifact; visual review happens by downloading it (`gh run download <id> -n screenshots`) |
+
+**Implication for the workflow:** locally verifiable per commit = lint, format, unit tests, build.
+Rendering and E2E are verified on the CI round-trip, and `deploy` gates on both.
+
 ### Open Questions (TBD)
 
 - Custom domain name and DNS ownership
@@ -611,9 +631,47 @@ flowchart LR
 
 ---
 
+## Phase 1 Progress
+
+Live site: <https://albertocutone.github.io/webgen/>
+
+| #   | Milestone                                     | Status         |
+| --- | --------------------------------------------- | -------------- |
+| 1   | Scaffold + CI + deploy skeleton               | ✅ Done        |
+| 2   | Layout shell — header, footer, routing        | ⬜ Not started |
+| 3   | Home + Appartamenti with real content         | ⬜ Not started |
+| 4   | Inquiry form + Turnstile + consent            | ⬜ Not started |
+| 5   | Remaining pages, FAQ, WhatsApp, cookie banner | ⬜ Not started |
+| 6   | SEO, prerender, image optimisation            | ⬜ Not started |
+| 7   | Polish — Framer Motion transitions            | ⬜ Not started |
+
+### Requirement coverage
+
+| ID  | Requirement                   | Status |
+| --- | ----------------------------- | ------ |
+| F1  | Multi-page nav                | ⬜     |
+| F2  | Inquiry form emails owner     | ⬜     |
+| F3  | GDPR consent + Privacy Policy | ⬜     |
+| F4  | Bot protection                | ⬜     |
+| F5  | Cookie banner                 | ⬜     |
+| F6  | Responsive layout             | ⬜     |
+| F7  | WhatsApp button               | ⬜     |
+| F8  | FAQ accordion                 | ⬜     |
+| F9  | EN/IT toggle                  | ⬜     |
+| F10 | Transitions                   | ⬜     |
+
+### Blocked / awaiting input
+
+- **Venue photography** — owner to export from the Google Business Profile into `public/images/`.
+  Building against placeholders until then; see `docs/CONTENT.md`.
+- **Custom domain**, room inventory, pricing visibility, analytics provider — see §10 open questions.
+
+---
+
 ## Changelog
 
-| Date       | Change                                                                                                                                                              |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order |
-| —          | Initial draft                                                                                                                                                       |
+| Date       | Change                                                                                                                                                                                                                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-07 | **M1 complete.** Vite 7 + React 19 scaffold; Tailwind v4 with masseria design tokens; ESLint 9 (pinned for jsx-a11y) + Prettier; Jest 30 + RTL; Playwright (Chromium + WebKit); GitHub Actions CI with Pages deploy, SPA 404 fallback and screenshot artifacts. Site live and verified rendering. |
+| 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order                                                                                                                               |
+| —          | Initial draft                                                                                                                                                                                                                                                                                     |
