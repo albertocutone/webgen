@@ -5,6 +5,7 @@ import Footer from './Footer.jsx'
 import CookieBanner from '../overlays/CookieBanner.jsx'
 import WhatsAppButton from '../overlays/WhatsAppButton.jsx'
 import { useLocale } from '../../hooks/useLocale.js'
+import { useCookieConsent } from '../../hooks/useCookieConsent.jsx'
 
 /**
  * A client-side route change does not reset scroll the way a document
@@ -19,10 +20,16 @@ function useScrollToTopOnNavigate() {
 
 export default function Layout() {
   const { t } = useLocale()
+  const { needsDecision } = useCookieConsent()
   useScrollToTopOnNavigate()
 
   return (
-    <div className="flex min-h-screen flex-col">
+    // The cookie banner is fixed to the bottom, so without matching padding it
+    // covers the last of the page once scrolled to the end.
+    <div
+      className={`flex min-h-screen flex-col ${needsDecision ? 'pb-36 sm:pb-24' : ''}`}
+      data-testid="layout-root"
+    >
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-olive-700 focus:px-4 focus:py-2 focus:text-limestone-50"

@@ -66,4 +66,14 @@ describe('CookieBanner', () => {
     const banner = screen.getByRole('region', { name: c.label })
     expect(banner.querySelector('a[href="/privacy"]')).not.toBeNull()
   })
+  it('reserves space so the fixed banner does not cover page content', async () => {
+    const user = userEvent.setup()
+    renderApp('/')
+
+    expect(screen.getByTestId('layout-root').className).toContain('pb-36')
+
+    await user.click(screen.getByRole('button', { name: c.accept }))
+
+    expect(screen.getByTestId('layout-root').className).not.toContain('pb-36')
+  })
 })
