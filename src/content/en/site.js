@@ -194,6 +194,28 @@ export default {
     ],
   },
 
+  events: {
+    intro:
+      'The masseria cooks by booking only, for events and celebrations. The garden, with the castle behind it, is laid for the occasion and the menu is agreed together.',
+    typesHeading: 'What we host',
+    types: [
+      'Weddings',
+      'Christenings and communions',
+      'Birthdays and anniversaries',
+      'Private parties',
+      'Holiday lunches (Easter Monday, Ferragosto)',
+    ],
+    notRestaurant: 'We are not a restaurant open to the public: we cook only for booked events.',
+    galleryHeading: 'The garden, laid for an event',
+    photos: [
+      { id: 'evento-tavola', alt: 'A long table laid in the garden with the castle behind' },
+      { id: 'evento-giardino', alt: 'A long table under festoon lights among the olive trees' },
+      { id: 'buffet', alt: 'A buffet of cured meats, cheeses and local produce' },
+      { id: 'terrazza', alt: 'The terrace with parasols and the Matese hills beyond' },
+    ],
+    cta: 'Tell us about your event',
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'About Us',

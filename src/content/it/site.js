@@ -194,6 +194,32 @@ export default {
     ],
   },
 
+  events: {
+    intro:
+      'La masseria cucina solo su prenotazione, per eventi e ricorrenze. Il giardino, con il castello alle spalle, viene apparecchiato per l’occasione e il menù si concorda insieme.',
+    typesHeading: 'Cosa ospitiamo',
+    types: [
+      'Matrimoni',
+      'Battesimi e comunioni',
+      'Compleanni e anniversari',
+      'Feste private',
+      'Pranzi delle ricorrenze (Pasquetta, Ferragosto)',
+    ],
+    notRestaurant:
+      'Non siamo un ristorante aperto al pubblico: si cucina esclusivamente per eventi prenotati.',
+    galleryHeading: 'Il giardino apparecchiato',
+    photos: [
+      {
+        id: 'evento-tavola',
+        alt: 'Tavolata apparecchiata nel giardino con il castello sullo sfondo',
+      },
+      { id: 'evento-giardino', alt: 'Tavolo lungo sotto le luci, tra gli ulivi' },
+      { id: 'buffet', alt: 'Buffet di salumi, formaggi e prodotti locali' },
+      { id: 'terrazza', alt: 'La terrazza con gli ombrelloni e le colline del Matese' },
+    ],
+    cta: 'Raccontaci il tuo evento',
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'Chi Siamo',

@@ -98,3 +98,33 @@ describe('Appartamenti', () => {
     }
   })
 })
+
+describe('Esperienze (events)', () => {
+  it('states plainly that it is not a walk-in restaurant', () => {
+    renderApp('/esperienze')
+    expect(screen.getByText(itContent.events.notRestaurant)).toBeInTheDocument()
+  })
+
+  it('lists the kinds of event hosted', () => {
+    renderApp('/esperienze')
+    for (const type of itContent.events.types) {
+      expect(screen.getByText(type)).toBeInTheDocument()
+    }
+  })
+
+  it('shows the venue photographs with descriptive alt text', () => {
+    renderApp('/esperienze')
+    for (const photo of itContent.events.photos) {
+      const img = screen.getByAltText(photo.alt)
+      expect(img.getAttribute('src')).toMatch(new RegExp(`${photo.id}-\\d+\\.webp$`))
+    }
+  })
+
+  it('routes the event enquiry to the contact page', () => {
+    renderApp('/esperienze')
+    expect(screen.getByRole('link', { name: itContent.events.cta })).toHaveAttribute(
+      'href',
+      '/contatti',
+    )
+  })
+})
