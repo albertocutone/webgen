@@ -30,7 +30,7 @@
 - Use **clear, concise, unambiguous language**; prefer **bullet points** over paragraphs
 - Highlight **key terms** in bold; use **tables** for comparisons, trade-offs and structured data
 - Use **Mermaid** in fenced ` ```mermaid ` blocks so diagrams render on GitHub
-- Keep node labels **short**; put explanation in prose *below* the diagram, not inside it
+- Keep node labels **short**; put explanation in prose _below_ the diagram, not inside it
 - Keep sections **self-contained** so they can be read and updated independently
 - Explicitly mark **assumptions**, **constraints**, **out-of-scope** items and **TBD**s
 - Every significant architectural decision carries a **rationale**
@@ -52,15 +52,15 @@ therefore split into two strictly sequenced phases.
 
 ### 🔴 Implementation Strategy — Phased Approach
 
-| | **Phase 1 — Static Frontend** | **Phase 2 — Full-Stack** |
-|---|---|---|
-| **Status** | ✅ Current scope | ⏸️ Deferred |
-| **Goal** | Be online, look premium, capture inquiries | Automate availability and payment |
-| **Booking model** | "Request to Book" form → owner's email | Live availability + deposit at checkout |
-| **State** | Stateless — no database | PostgreSQL, authoritative availability |
-| **Payments** | None (handled offline by owner) | Stripe PaymentIntents + webhooks |
-| **Admin** | None (owner reads email) | Admin dashboard for calendar & bookings |
-| **Hosting** | GitHub Pages (static) | Node host + managed Postgres |
+|                   | **Phase 1 — Static Frontend**              | **Phase 2 — Full-Stack**                |
+| ----------------- | ------------------------------------------ | --------------------------------------- |
+| **Status**        | ✅ Current scope                           | ⏸️ Deferred                             |
+| **Goal**          | Be online, look premium, capture inquiries | Automate availability and payment       |
+| **Booking model** | "Request to Book" form → owner's email     | Live availability + deposit at checkout |
+| **State**         | Stateless — no database                    | PostgreSQL, authoritative availability  |
+| **Payments**      | None (handled offline by owner)            | Stripe PaymentIntents + webhooks        |
+| **Admin**         | None (owner reads email)                   | Admin dashboard for calendar & bookings |
+| **Hosting**       | GitHub Pages (static)                      | Node host + managed Postgres            |
 
 **Guiding principle:** Phase 1 must not create work that Phase 2 has to throw away. The inquiry form's
 data model (see §5.4) is deliberately a subset of the Phase 2 `BOOKING` entity (see §6.1).
@@ -74,31 +74,31 @@ data model (see §5.4) is deliberately a subset of the Phase 2 `BOOKING` entity 
 
 ### Functional Requirements — Phase 1
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| **F1** | Multi-page marketing site with persistent header navigation | P0 |
-| **F2** | Booking-inquiry form that emails the owner reliably | P0 |
-| **F3** | GDPR consent checkbox + linked Privacy Policy page | P0 |
-| **F4** | Bot protection on the inquiry form | P0 |
-| **F5** | Cookie-consent banner (EU compliant) | P0 |
-| **F6** | Fully responsive layout (mobile-first) | P0 |
-| **F7** | Floating WhatsApp contact button | P1 |
-| **F8** | FAQ accordion (check-in, pets, parking) | P1 |
-| **F9** | EN / IT language toggle | P1 |
-| **F10** | Premium page/scroll transitions | P2 |
+| ID      | Requirement                                                 | Priority |
+| ------- | ----------------------------------------------------------- | -------- |
+| **F1**  | Multi-page marketing site with persistent header navigation | P0       |
+| **F2**  | Booking-inquiry form that emails the owner reliably         | P0       |
+| **F3**  | GDPR consent checkbox + linked Privacy Policy page          | P0       |
+| **F4**  | Bot protection on the inquiry form                          | P0       |
+| **F5**  | Cookie-consent banner (EU compliant)                        | P0       |
+| **F6**  | Fully responsive layout (mobile-first)                      | P0       |
+| **F7**  | Floating WhatsApp contact button                            | P1       |
+| **F8**  | FAQ accordion (check-in, pets, parking)                     | P1       |
+| **F9**  | EN / IT language toggle                                     | P1       |
+| **F10** | Premium page/scroll transitions                             | P2       |
 
 **Priority key:** P0 = must-have for launch · P1 = important, can ship without · P2 = nice-to-have
 
 ### Non-Functional Requirements
 
-| Category | Target |
-|----------|--------|
-| **Performance** | Lighthouse ≥ 90 on all four categories; LCP < 2.5 s on 4G |
-| **Accessibility** | WCAG 2.1 AA — keyboard-navigable nav, form labels, visible focus |
-| **SEO** | Indexable static HTML, per-page meta, `sitemap.xml`, `robots.txt` |
-| **Compliance** | GDPR — explicit consent before submit, no non-essential cookies pre-consent |
-| **Availability** | Static hosting; no server to fail. Form outage degrades to WhatsApp/email |
-| **Maintainability** | Owner-editable copy isolated in content files, not in JSX |
+| Category            | Target                                                                      |
+| ------------------- | --------------------------------------------------------------------------- |
+| **Performance**     | Lighthouse ≥ 90 on all four categories; LCP < 2.5 s on 4G                   |
+| **Accessibility**   | WCAG 2.1 AA — keyboard-navigable nav, form labels, visible focus            |
+| **SEO**             | Indexable static HTML, per-page meta, `sitemap.xml`, `robots.txt`           |
+| **Compliance**      | GDPR — explicit consent before submit, no non-essential cookies pre-consent |
+| **Availability**    | Static hosting; no server to fail. Form outage degrades to WhatsApp/email   |
+| **Maintainability** | Owner-editable copy isolated in content files, not in JSX                   |
 
 ### Out of Scope (Phase 1)
 
@@ -123,27 +123,27 @@ data model (see §5.4) is deliberately a subset of the Phase 2 `BOOKING` entity 
 
 ### Phase 1 — Static Frontend (current scope)
 
-| Concern | Choice | Rationale |
-|---------|--------|-----------|
-| **Framework** | Vite + React | Fast HMR, minimal config, first-class static build |
-| **Routing** | React Router | Multi-page URLs without a server (see §5.2 for the GH Pages caveat) |
-| **Styling** | Tailwind CSS | Rapid iteration, responsive utilities, no CSS-file sprawl |
-| **Animation** | Framer Motion | Premium transitions, declarative, tree-shakeable |
-| **Forms** | Web3Forms | Serverless email forwarding — no backend to run |
-| **Bot protection** | Cloudflare Turnstile | Privacy-friendly, no image puzzles, free tier |
-| **Unit tests** | Jest + React Testing Library | Component logic, consent-checkbox state, banner state |
-| **E2E tests** | Playwright | Real form submission, navigation, responsive viewports |
-| **Lint/format** | ESLint + Prettier | Enforced in CI |
-| **Hosting** | GitHub Pages | Free, static, integrates with GitHub Actions |
+| Concern            | Choice                       | Rationale                                                           |
+| ------------------ | ---------------------------- | ------------------------------------------------------------------- |
+| **Framework**      | Vite + React                 | Fast HMR, minimal config, first-class static build                  |
+| **Routing**        | React Router                 | Multi-page URLs without a server (see §5.2 for the GH Pages caveat) |
+| **Styling**        | Tailwind CSS                 | Rapid iteration, responsive utilities, no CSS-file sprawl           |
+| **Animation**      | Framer Motion                | Premium transitions, declarative, tree-shakeable                    |
+| **Forms**          | Web3Forms                    | Serverless email forwarding — no backend to run                     |
+| **Bot protection** | Cloudflare Turnstile         | Privacy-friendly, no image puzzles, free tier                       |
+| **Unit tests**     | Jest + React Testing Library | Component logic, consent-checkbox state, banner state               |
+| **E2E tests**      | Playwright                   | Real form submission, navigation, responsive viewports              |
+| **Lint/format**    | ESLint + Prettier            | Enforced in CI                                                      |
+| **Hosting**        | GitHub Pages                 | Free, static, integrates with GitHub Actions                        |
 
 ### Phase 2 — Full-Stack (future scope)
 
-| Concern | Choice | Rationale |
-|---------|--------|-----------|
-| **Framework** | Next.js + TypeScript | SSR for booking pages, API routes, types for money/date logic |
-| **Database** | PostgreSQL | Relational integrity + exclusion constraints for date collisions |
-| **Payments** | Stripe | PaymentIntents, webhooks, EU SCA compliance built in |
-| **Auth** | TBD (owner-only) | Single-tenant admin; a managed provider is likely sufficient |
+| Concern       | Choice               | Rationale                                                        |
+| ------------- | -------------------- | ---------------------------------------------------------------- |
+| **Framework** | Next.js + TypeScript | SSR for booking pages, API routes, types for money/date logic    |
+| **Database**  | PostgreSQL           | Relational integrity + exclusion constraints for date collisions |
+| **Payments**  | Stripe               | PaymentIntents, webhooks, EU SCA compliance built in             |
+| **Auth**      | TBD (owner-only)     | Single-tenant admin; a managed provider is likely sufficient     |
 
 </details>
 
@@ -209,14 +209,14 @@ flowchart TD
 Modelled on the reference layout (see `docs/assets/reference-header.png` — **TBD**: commit the
 reference image, previously tracked only as `image_761202.png`).
 
-| Component | Placement | Behaviour |
-|-----------|-----------|-----------|
-| **Header** | Persistent, top | Left: logo · Centre: page links · Right: EN/IT toggle + **Prenota Ora** CTA |
-| **Mobile nav** | Header, < `md` | Hamburger → full-screen overlay menu |
-| **WhatsApp button** | Sticky, bottom-right | Opens `wa.me` chat with the owner in a new tab |
-| **Cookie banner** | Bottom, first visit | Accept / decline non-essential cookies; choice persisted in `localStorage` |
-| **FAQ accordion** | Section, multiple pages | Keyboard-accessible disclosure widgets (check-in, pets, parking) |
-| **Footer** | Bottom, all pages | Contacts, address, social, Privacy Policy + Cookie Policy links |
+| Component           | Placement               | Behaviour                                                                   |
+| ------------------- | ----------------------- | --------------------------------------------------------------------------- |
+| **Header**          | Persistent, top         | Left: logo · Centre: page links · Right: EN/IT toggle + **Prenota Ora** CTA |
+| **Mobile nav**      | Header, < `md`          | Hamburger → full-screen overlay menu                                        |
+| **WhatsApp button** | Sticky, bottom-right    | Opens `wa.me` chat with the owner in a new tab                              |
+| **Cookie banner**   | Bottom, first visit     | Accept / decline non-essential cookies; choice persisted in `localStorage`  |
+| **FAQ accordion**   | Section, multiple pages | Keyboard-accessible disclosure widgets (check-in, pets, parking)            |
+| **Footer**          | Bottom, all pages       | Contacts, address, social, Privacy Policy + Cookie Policy links             |
 
 ### 5.2 Routing & Views
 
@@ -260,15 +260,15 @@ flowchart LR
 
 **Collected fields**
 
-| Field | Required | Maps to Phase 2 |
-|-------|----------|-----------------|
-| Name | ✅ | `CUSTOMER.name` |
-| Email | ✅ | `CUSTOMER.email` |
-| Phone | ❌ | `CUSTOMER.phone` |
-| Desired dates (from / to) | ✅ | `BOOKING.start_date` / `end_date` |
-| Event type / asset of interest | ✅ | `BOOKING_LINE_ITEM.asset_id` |
-| Message | ❌ | — |
-| GDPR consent | ✅ | — |
+| Field                          | Required | Maps to Phase 2                   |
+| ------------------------------ | -------- | --------------------------------- |
+| Name                           | ✅       | `CUSTOMER.name`                   |
+| Email                          | ✅       | `CUSTOMER.email`                  |
+| Phone                          | ❌       | `CUSTOMER.phone`                  |
+| Desired dates (from / to)      | ✅       | `BOOKING.start_date` / `end_date` |
+| Event type / asset of interest | ✅       | `BOOKING_LINE_ITEM.asset_id`      |
+| Message                        | ❌       | —                                 |
+| GDPR consent                   | ✅       | —                                 |
 
 **Controls**
 
@@ -419,14 +419,14 @@ sequenceDiagram
 <details id="7-seo--performance">
 <summary><strong>7. SEO & Performance</strong></summary>
 
-| Area | Approach |
-|------|----------|
-| **Semantic HTML** | Strict `<header>`, `<main>`, `<nav>`, `<section>`, `<article>`; one `<h1>` per page, logical H1–H3 |
-| **Meta data** | Per-page `<title>` and `<meta name="description">` tuned for IT and EN intents; Open Graph + Twitter cards for link previews |
-| **Structured data** | JSON-LD `LodgingBusiness` / `Hotel` schema with address, geo, amenities |
-| **Technical SEO** | Generated `sitemap.xml` and `robots.txt`; `hreflang` for IT/EN once i18n lands; canonical URLs |
-| **Images** | WebP/AVIF, explicit `width`/`height` to prevent CLS, `loading="lazy"` below the fold, hero preloaded |
-| **Budget** | JS < 200 KB gzipped; Lighthouse ≥ 90 enforced in CI (**TBD**: warn vs. fail) |
+| Area                | Approach                                                                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Semantic HTML**   | Strict `<header>`, `<main>`, `<nav>`, `<section>`, `<article>`; one `<h1>` per page, logical H1–H3                           |
+| **Meta data**       | Per-page `<title>` and `<meta name="description">` tuned for IT and EN intents; Open Graph + Twitter cards for link previews |
+| **Structured data** | JSON-LD `LodgingBusiness` / `Hotel` schema with address, geo, amenities                                                      |
+| **Technical SEO**   | Generated `sitemap.xml` and `robots.txt`; `hreflang` for IT/EN once i18n lands; canonical URLs                               |
+| **Images**          | WebP/AVIF, explicit `width`/`height` to prevent CLS, `loading="lazy"` below the fold, hero preloaded                         |
+| **Budget**          | JS < 200 KB gzipped; Lighthouse ≥ 90 enforced in CI (**TBD**: warn vs. fail)                                                 |
 
 **Caveat:** a client-rendered SPA ships an empty `<div id="root">` to crawlers. Google executes JS, but
 other crawlers and social scrapers often do not. Mitigation for Phase 1: prerender the routes at build
@@ -506,13 +506,13 @@ webgen/
 
 ### Rationale
 
-| Decision | Why |
-|----------|-----|
+| Decision                                                                    | Why                                                                                          |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `components/` split by **role** (`layout`, `common`, `booking`, `overlays`) | Flat component folders rot fast; role grouping keeps the booking funnel isolated for Phase 2 |
-| `content/{it,en}/` from day one | Makes the P1 language toggle a data swap, and i18n a drop-in later |
-| `tests/` at top level, not co-located | Matches the sibling projects; keeps `src/` shippable and the Playwright/Jest split obvious |
-| `lib/web3forms.js` as the only network call site | Phase 2 replaces this one module with an API client |
-| `public/CNAME` committed | GitHub Pages drops the custom domain on every deploy unless the file is in the build output |
+| `content/{it,en}/` from day one                                             | Makes the P1 language toggle a data swap, and i18n a drop-in later                           |
+| `tests/` at top level, not co-located                                       | Matches the sibling projects; keeps `src/` shippable and the Playwright/Jest split obvious   |
+| `lib/web3forms.js` as the only network call site                            | Phase 2 replaces this one module with an API client                                          |
+| `public/CNAME` committed                                                    | GitHub Pages drops the custom domain on every deploy unless the file is in the build output  |
 
 </details>
 
@@ -557,15 +557,15 @@ flowchart LR
 
 ### Delivery Order (Phase 1)
 
-| # | Milestone | Exit criterion |
-|---|-----------|----------------|
-| 1 | Scaffold + CI + deploy skeleton | Blank page live on GitHub Pages via Actions |
-| 2 | Layout shell — header, footer, routing | All routes reachable, deep links work |
-| 3 | Home + Appartamenti with real content | Owner signs off on look and copy |
-| 4 | Inquiry form + Turnstile + consent | Test inquiry lands in the owner's inbox |
-| 5 | Remaining pages, FAQ, WhatsApp, cookie banner | F1–F9 complete |
-| 6 | SEO, prerender, image optimisation | Lighthouse ≥ 90 across the board |
-| 7 | Polish — Framer Motion transitions | Launch |
+| #   | Milestone                                     | Exit criterion                              |
+| --- | --------------------------------------------- | ------------------------------------------- |
+| 1   | Scaffold + CI + deploy skeleton               | Blank page live on GitHub Pages via Actions |
+| 2   | Layout shell — header, footer, routing        | All routes reachable, deep links work       |
+| 3   | Home + Appartamenti with real content         | Owner signs off on look and copy            |
+| 4   | Inquiry form + Turnstile + consent            | Test inquiry lands in the owner's inbox     |
+| 5   | Remaining pages, FAQ, WhatsApp, cookie banner | F1–F9 complete                              |
+| 6   | SEO, prerender, image optimisation            | Lighthouse ≥ 90 across the board            |
+| 7   | Polish — Framer Motion transitions            | Launch                                      |
 
 </details>
 
@@ -574,15 +574,15 @@ flowchart LR
 <details id="10-risks-trade-offs--open-questions">
 <summary><strong>10. Risks, Trade-offs & Open Questions</strong></summary>
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| **Web3Forms outage or spam-foldering** | Inquiries lost silently — direct revenue loss | Surface email + WhatsApp fallback on submit failure; owner verifies inbox monthly |
-| **SPA renders empty HTML to crawlers** | Poor SEO — the site's main purpose fails | Prerender routes at build time (§7); verify with a fetch-as-crawler check |
-| **Deep links 404 on GitHub Pages** | Shared links break | `404.html` SPA fallback + correct Vite `base` |
-| **Jest + Vite/ESM friction** | Slow test setup, config drift | Accepted as specified. Vitest is the native pairing and a drop-in swap if config cost becomes real |
-| **Content not ready** | Blocks milestones 3–5 | `docs/CONTENT.md` checklist owned by the venue owner; build against placeholders |
-| **Manual date blocking in Phase 1** | Double-booking with OTAs | Explicitly out of scope; owner keeps a single master calendar until Phase 2 |
-| **Phase 2 never happens** | Site stays a brochure | Acceptable — Phase 1 is independently valuable and complete |
+| Risk                                   | Impact                                        | Mitigation                                                                                         |
+| -------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Web3Forms outage or spam-foldering** | Inquiries lost silently — direct revenue loss | Surface email + WhatsApp fallback on submit failure; owner verifies inbox monthly                  |
+| **SPA renders empty HTML to crawlers** | Poor SEO — the site's main purpose fails      | Prerender routes at build time (§7); verify with a fetch-as-crawler check                          |
+| **Deep links 404 on GitHub Pages**     | Shared links break                            | `404.html` SPA fallback + correct Vite `base`                                                      |
+| **Jest + Vite/ESM friction**           | Slow test setup, config drift                 | Accepted as specified. Vitest is the native pairing and a drop-in swap if config cost becomes real |
+| **Content not ready**                  | Blocks milestones 3–5                         | `docs/CONTENT.md` checklist owned by the venue owner; build against placeholders                   |
+| **Manual date blocking in Phase 1**    | Double-booking with OTAs                      | Explicitly out of scope; owner keeps a single master calendar until Phase 2                        |
+| **Phase 2 never happens**              | Site stays a brochure                         | Acceptable — Phase 1 is independently valuable and complete                                        |
 
 ### Open Questions (TBD)
 
@@ -599,13 +599,13 @@ flowchart LR
 <details id="11-future-improvements">
 <summary><strong>11. Future Improvements</strong></summary>
 
-| Improvement | Description | Depends on |
-|-------------|-------------|------------|
-| **Multi-language i18n** | Dynamic translation across all pages via `react-i18next`, `hreflang` tags | `content/{it,en}` structure (already in place) |
-| **Channel-manager sync** | iCal/API sync with Booking.com and Expedia to eliminate manual date blocking | Phase 2 database |
-| **Interactive 3D tour** | WebGL/Three.js walkthrough of the estate and rooms | Photogrammetry assets; performance budget review |
-| **Guest confirmation emails** | Auto-acknowledge inquiries so guests know they were received | Phase 2 backend (or a Web3Forms autoresponder as an interim) |
-| **Owner content editing** | Lightweight CMS or Markdown-in-repo editing so copy changes don't need a developer | Content model stability |
+| Improvement                   | Description                                                                        | Depends on                                                   |
+| ----------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Multi-language i18n**       | Dynamic translation across all pages via `react-i18next`, `hreflang` tags          | `content/{it,en}` structure (already in place)               |
+| **Channel-manager sync**      | iCal/API sync with Booking.com and Expedia to eliminate manual date blocking       | Phase 2 database                                             |
+| **Interactive 3D tour**       | WebGL/Three.js walkthrough of the estate and rooms                                 | Photogrammetry assets; performance budget review             |
+| **Guest confirmation emails** | Auto-acknowledge inquiries so guests know they were received                       | Phase 2 backend (or a Web3Forms autoresponder as an interim) |
+| **Owner content editing**     | Lightweight CMS or Markdown-in-repo editing so copy changes don't need a developer | Content model stability                                      |
 
 </details>
 
@@ -613,7 +613,7 @@ flowchart LR
 
 ## Changelog
 
-| Date | Change |
-|------|--------|
+| Date       | Change                                                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-09-07 | Restructured to the standard design-doc format; fenced and corrected all Mermaid diagrams; added scope/requirements, repository structure, risks and delivery order |
-| — | Initial draft |
+| —          | Initial draft                                                                                                                                                       |
