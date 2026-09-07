@@ -34,7 +34,7 @@ Imported from the Facebook page (September 2026) and live in
 
 ## 3. Photography and logo
 
-Drop files into `public/images/`. The site currently ships two obvious
+Drop files into `assets/photos/` (see `assets/README.md`). The site currently ships two obvious
 placeholders (`placeholder-hero.svg`, `placeholder-room.svg`) that read
 "PLACEHOLDER — fotografia da fornire" so they cannot be shipped by accident.
 

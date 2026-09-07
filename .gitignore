@@ -32,8 +32,11 @@ pnpm-debug.log*
 screenshots/
 dist-ssr/
 
-# Facebook page export drop zone (never committed)
-tmp-fb/
+# Raw source material the site was built from (photos, saved pages).
+# Never committed: the saved Facebook pages contain the owner's personal
+# account email, and the repository is public. Selected, processed assets
+# live in assets/photos and assets/brand instead.
+assets/source/
 # Source photography IS committed: CI regenerates the WebP variants from it,
 # and the generated manifest that tests import must match what is in the repo.
 # Only the generated variants are ignored.

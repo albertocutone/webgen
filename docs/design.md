@@ -453,6 +453,10 @@ webgen/
 │   ├── CONTENT.md                  # copy/asset checklist for the owner
 │   └── assets/
 │       └── reference-header.png    # layout reference
+├── assets/                         # build inputs, not served directly
+│   ├── brand/logo.jpg              # -> header mark, favicons, social card
+│   ├── photos/                     # -> responsive WebP in public/images
+│   └── source/                     # raw material, never committed (see assets/README.md)
 ├── public/                         # copied verbatim to the build output
 │   ├── favicon.svg
 │   ├── robots.txt

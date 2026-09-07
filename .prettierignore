@@ -1,5 +1,5 @@
 dist/
-tmp-fb/
+assets/source/
 dist-ssr/
 coverage/
 playwright-report/

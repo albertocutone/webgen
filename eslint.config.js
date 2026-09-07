@@ -13,8 +13,8 @@ export default [
       'coverage/**',
       'playwright-report/**',
       'test-results/**',
-      // Saved Facebook page export used to import the venue's real data.
-      'tmp-fb/**',
+      // Raw source material (saved pages, original photographs).
+      'assets/source/**',
     ],
   },
 
