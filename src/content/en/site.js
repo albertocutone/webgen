@@ -17,7 +17,7 @@ export default {
     },
     appartamenti: {
       title: 'Apartments',
-      lead: 'Individual rooms and self-contained apartments, or the whole property exclusively.',
+      lead: 'Five rooms in the farmhouse, from a simple double to a family room.',
     },
     territorio: {
       title: 'The Region',
@@ -108,27 +108,32 @@ export default {
 
   faq: {
     heading: 'Frequently asked questions',
-    // PLACEHOLDER answers — to be confirmed by the owner (docs/CONTENT.md).
+    // Answers verified against the venue's Google Hotels listing and Facebook
+    // page (September 2026). Check-in/check-out times still to be confirmed.
     items: [
       {
-        q: 'What are the check-in and check-out times?',
-        a: 'Check-in is from 15:00 to 20:00 and check-out by 10:00. Write to us if you need different times — we try to be flexible.',
+        q: 'Can I come for lunch or dinner without booking an event?',
+        a: 'No. The masseria is not a restaurant open to the public: it cooks only for booked events and celebrations, with an agreed menu. Write to us for available dates.',
+      },
+      {
+        q: 'What kind of events do you host?',
+        a: 'Weddings, christenings, communions, birthdays and private parties, in the garden below the castle. We handle the menu, as we do for the Easter Monday and Ferragosto lunches.',
       },
       {
         q: 'Are pets allowed?',
-        a: 'Yes, your animals are welcome at no extra charge. The grounds are large and fenced.',
+        a: 'Yes, the property is pet friendly and your animals are welcome.',
       },
       {
         q: 'Is there parking?',
-        a: 'Yes, free private parking within the property.',
+        a: 'Yes, parking is available free of charge on site.',
       },
       {
-        q: 'Can the whole property be booked?',
-        a: 'Yes, the masseria can be reserved exclusively for weddings and private events. Mention it in your enquiry.',
+        q: 'What is included in a stay?',
+        a: 'Free Wi-Fi, air conditioning and breakfast are included in every room. There is no pool, spa or gym.',
       },
       {
         q: 'How is a booking confirmed?',
-        a: 'Send us your dates: we reply with availability and a quote, and confirm by email.',
+        a: 'Send us your dates: we reply with availability and a quote, and confirm by email or phone.',
       },
     ],
   },
@@ -140,35 +145,51 @@ export default {
   },
 
   apartments: {
-    // PLACEHOLDER units — the real inventory is to be confirmed (docs/CONTENT.md).
-    intro: 'Each unit is self-contained, with its own entrance and a view over the countryside.',
+    // Room types and amenities verified against the venue's Google Hotels
+    // listing (September 2026). Capacities follow standard hotel terminology
+    // for double/triple; the family room is to be confirmed (docs/CONTENT.md).
+    intro:
+      'Five rooms in the farmhouse, all with free Wi-Fi, air conditioning and breakfast included. On-site parking, and pets are welcome.',
     guestsLabel: 'guests',
     enquire: 'Enquire',
+    amenitiesHeading: 'Amenities',
+    amenities: [
+      'Free Wi-Fi',
+      'Breakfast included',
+      'Air conditioning',
+      'Free parking',
+      'Pets allowed',
+    ],
     items: [
       {
-        id: 'trullo',
-        name: 'Il Trullo',
+        id: 'doppia-economy',
+        name: 'Economy Double Room',
         guests: 2,
-        description: 'A stone double room with a star-vaulted ceiling and private patio.',
+        description: 'A simple, quiet double room looking out over the countryside.',
       },
       {
-        id: 'uliveto',
-        name: 'Uliveto',
+        id: 'doppia',
+        name: 'Double Room',
+        guests: 2,
+        description: "The farmhouse's own double room, with the building's original furnishings.",
+      },
+      {
+        id: 'tripla-giardino',
+        name: 'Triple Room with Garden View',
+        guests: 3,
+        description: 'A triple looking straight onto the garden and the castle of Prata Sannita.',
+      },
+      {
+        id: 'tripla-superior',
+        name: 'Superior Triple Room',
+        guests: 3,
+        description: 'A larger triple, with extra space for longer stays.',
+      },
+      {
+        id: 'familiare-superior',
+        name: 'Superior Family Room',
         guests: 4,
-        description: 'Two-bedroom apartment with an eat-in kitchen looking over the olive grove.',
-      },
-      {
-        id: 'corte',
-        name: 'La Corte',
-        guests: 6,
-        description: 'A larger unit around the inner courtyard, well suited to families.',
-      },
-      {
-        id: 'intera',
-        name: 'The whole masseria',
-        guests: 12,
-        description:
-          'Every unit exclusively, with the shared spaces and garden, for weddings and events.',
+        description: 'The largest room, designed with families in mind.',
       },
     ],
   },

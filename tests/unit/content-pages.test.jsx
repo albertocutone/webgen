@@ -80,8 +80,21 @@ describe('Appartamenti', () => {
     expect(new Set(names).size).toBe(names.length)
   })
 
-  it('includes a whole-property option, the highest-value booking', () => {
+  it('lists the amenities confirmed for the property', () => {
     renderApp('/appartamenti')
-    expect(screen.getByRole('heading', { name: /intera masseria/i })).toBeInTheDocument()
+    for (const amenity of itContent.apartments.amenities) {
+      expect(screen.getByText(amenity)).toBeInTheDocument()
+    }
+  })
+
+  it('advertises no amenity the property does not have', () => {
+    // Google's listing is explicit: no pool, hot tub, gym or spa. Claiming any
+    // of them would be a guest turning up to something that is not there.
+    renderApp('/appartamenti')
+    const page = document.body.textContent.toLowerCase()
+    for (const absent of ['piscina', 'pool', 'spa', 'palestra', 'jacuzzi']) {
+      // Word boundaries: "spa" is a substring of "spazio".
+      expect(page).not.toMatch(new RegExp(`\\b${absent}\\b`))
+    }
   })
 })

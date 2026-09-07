@@ -44,6 +44,18 @@ export default function Appartamenti() {
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <p className="max-w-2xl text-stone-muted">{t.apartments.intro}</p>
 
+        <h2 className="sr-only">{t.apartments.amenitiesHeading}</h2>
+        <ul className="mt-6 flex flex-wrap gap-2">
+          {t.apartments.amenities.map((amenity) => (
+            <li
+              key={amenity}
+              className="rounded-full border border-olive-400 bg-limestone-100 px-3 py-1 text-sm text-olive-700"
+            >
+              {amenity}
+            </li>
+          ))}
+        </ul>
+
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {t.apartments.items.map((unit) => (
             <UnitCard key={unit.id} unit={unit} />

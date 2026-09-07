@@ -17,7 +17,7 @@ export default {
     },
     appartamenti: {
       title: 'Appartamenti',
-      lead: 'Camere e appartamenti indipendenti, oppure l’intera struttura in esclusiva.',
+      lead: 'Cinque camere nella masseria, dalla doppia essenziale alla familiare.',
     },
     territorio: {
       title: 'Territorio',
@@ -108,27 +108,32 @@ export default {
 
   faq: {
     heading: 'Domande frequenti',
-    // PLACEHOLDER answers — to be confirmed by the owner (docs/CONTENT.md).
+    // Answers verified against the venue's Google Hotels listing and Facebook
+    // page (September 2026). Check-in/check-out times still to be confirmed.
     items: [
       {
-        q: 'A che ora sono il check-in e il check-out?',
-        a: 'Il check-in è dalle 15:00 alle 20:00, il check-out entro le 10:00. Per orari diversi scrivici: cerchiamo sempre di essere flessibili.',
+        q: 'Si può pranzare o cenare senza prenotare un evento?',
+        a: 'No. La masseria non è un ristorante aperto al pubblico: cucina esclusivamente per eventi e ricorrenze prenotate, con menù concordati. Per le date disponibili scrivici.',
+      },
+      {
+        q: 'Che tipo di eventi ospitate?',
+        a: 'Matrimoni, battesimi, comunioni, compleanni e feste private, nel giardino con vista sul castello. Ci occupiamo noi del menù, come nei pranzi di Pasquetta e Ferragosto.',
       },
       {
         q: 'Sono ammessi gli animali?',
-        a: 'Sì, i vostri animali sono i benvenuti senza supplemento. La tenuta è ampia e recintata.',
+        a: 'Sì, la struttura è pet friendly e i vostri animali sono i benvenuti.',
       },
       {
         q: 'C’è parcheggio?',
-        a: 'Sì, parcheggio privato gratuito all’interno della proprietà.',
+        a: 'Sì, il parcheggio è disponibile gratuitamente in struttura.',
       },
       {
-        q: 'È possibile affittare l’intera struttura?',
-        a: 'Sì, la masseria può essere riservata in esclusiva per matrimoni ed eventi privati. Indicalo nella richiesta di prenotazione.',
+        q: 'Cosa è incluso nel soggiorno?',
+        a: 'Wi-Fi gratuito, aria condizionata e colazione sono inclusi in tutte le camere. Non ci sono piscina, spa o palestra.',
       },
       {
         q: 'Come si conferma una prenotazione?',
-        a: 'Inviaci una richiesta con le tue date: ti rispondiamo con disponibilità e preventivo, e la conferma avviene via email.',
+        a: 'Inviaci una richiesta con le tue date: ti rispondiamo con disponibilità e preventivo, e la conferma avviene via email o telefono.',
       },
     ],
   },
@@ -140,35 +145,51 @@ export default {
   },
 
   apartments: {
-    // PLACEHOLDER units — the real inventory is to be confirmed (docs/CONTENT.md).
-    intro: 'Ogni alloggio è indipendente, con ingresso autonomo e vista sulla campagna.',
+    // Room types and amenities verified against the venue's Google Hotels
+    // listing (September 2026). Capacities follow standard hotel terminology
+    // for double/triple; the family room is to be confirmed (docs/CONTENT.md).
+    intro:
+      'Cinque camere nella masseria, tutte con Wi-Fi gratuito, aria condizionata e colazione inclusa. Parcheggio in struttura e animali benvenuti.',
     guestsLabel: 'ospiti',
     enquire: 'Richiedi',
+    amenitiesHeading: 'Servizi',
+    amenities: [
+      'Wi-Fi gratuito',
+      'Colazione inclusa',
+      'Aria condizionata',
+      'Parcheggio gratuito',
+      'Animali ammessi',
+    ],
     items: [
       {
-        id: 'trullo',
-        name: 'Il Trullo',
+        id: 'doppia-economy',
+        name: 'Camera Doppia Economy',
         guests: 2,
-        description: 'Camera matrimoniale in pietra con volta a stella e patio privato.',
+        description: 'Camera doppia essenziale e tranquilla, affacciata sulla campagna.',
       },
       {
-        id: 'uliveto',
-        name: 'Uliveto',
+        id: 'doppia',
+        name: 'Camera Doppia',
+        guests: 2,
+        description: 'La camera doppia della masseria, con gli arredi originali del casale.',
+      },
+      {
+        id: 'tripla-giardino',
+        name: 'Camera Tripla con Vista Giardino',
+        guests: 3,
+        description: 'Tripla con affaccio diretto sul giardino e sul Castello di Prata Sannita.',
+      },
+      {
+        id: 'tripla-superior',
+        name: 'Camera Tripla Superior',
+        guests: 3,
+        description: 'Tripla più ampia, con spazio in più per soggiorni lunghi.',
+      },
+      {
+        id: 'familiare-superior',
+        name: 'Camera Familiare Superior',
         guests: 4,
-        description: 'Appartamento con due camere, cucina abitabile e affaccio sull’uliveto.',
-      },
-      {
-        id: 'corte',
-        name: 'La Corte',
-        guests: 6,
-        description: 'Alloggio ampio attorno alla corte interna, ideale per famiglie.',
-      },
-      {
-        id: 'intera',
-        name: 'Intera masseria',
-        guests: 12,
-        description:
-          'Tutti gli alloggi in esclusiva, con spazi comuni e giardino, per matrimoni ed eventi.',
+        description: 'La sistemazione più grande, pensata per le famiglie.',
       },
     ],
   },
