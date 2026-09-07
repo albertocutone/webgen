@@ -45,6 +45,58 @@ export default {
     },
   },
 
+  contact: {
+    formHeading: 'Richiedi disponibilita',
+    required: 'obbligatorio',
+    optionalSuffix: '(facoltativo)',
+    labels: {
+      name: 'Nome e cognome',
+      email: 'Email',
+      phone: 'Telefono',
+      startDate: 'Data di arrivo',
+      endDate: 'Data di partenza',
+      eventType: 'Tipo di soggiorno o evento',
+      message: 'Messaggio',
+    },
+    eventTypes: {
+      soggiorno: 'Soggiorno',
+      matrimonio: 'Matrimonio',
+      evento: 'Evento privato',
+      'venue-intera': 'Intera struttura in esclusiva',
+      altro: 'Altro',
+    },
+    eventTypePlaceholder: 'Seleziona...',
+    consent: {
+      text: 'Acconsento al trattamento dei miei dati personali per rispondere a questa richiesta.',
+      linkText: 'Leggi la Privacy Policy',
+    },
+    submit: 'Invia richiesta',
+    submitting: 'Invio in corso...',
+    errors: {
+      nameRequired: 'Inserisci il tuo nome.',
+      emailRequired: 'Inserisci la tua email.',
+      emailInvalid: 'Controlla il formato della email.',
+      startDateRequired: 'Indica la data di arrivo.',
+      startDateInPast: 'La data di arrivo non puo essere nel passato.',
+      endDateRequired: 'Indica la data di partenza.',
+      endDateBeforeStart: 'La partenza deve essere successiva all arrivo.',
+      eventTypeRequired: 'Seleziona il tipo di soggiorno.',
+      consentRequired: 'Devi acconsentire al trattamento dei dati per inviare.',
+      summaryTitle: 'Controlla i campi evidenziati:',
+    },
+    success: {
+      title: 'Richiesta inviata',
+      body: 'Grazie! Ti risponderemo al piu presto con disponibilita e preventivo.',
+      again: 'Invia un altra richiesta',
+    },
+    failure: {
+      title: 'Invio non riuscito',
+      body: 'Non siamo riusciti a inviare la richiesta. Scrivici direttamente:',
+      retry: 'Riprova',
+    },
+    notConfigured: 'Il modulo non e ancora collegato. Nel frattempo scrivici direttamente:',
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'Chi Siamo',

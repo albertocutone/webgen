@@ -45,6 +45,58 @@ export default {
     },
   },
 
+  contact: {
+    formHeading: 'Check availability',
+    required: 'required',
+    optionalSuffix: '(optional)',
+    labels: {
+      name: 'Full name',
+      email: 'Email',
+      phone: 'Phone',
+      startDate: 'Arrival date',
+      endDate: 'Departure date',
+      eventType: 'Type of stay or event',
+      message: 'Message',
+    },
+    eventTypes: {
+      soggiorno: 'Stay',
+      matrimonio: 'Wedding',
+      evento: 'Private event',
+      'venue-intera': 'Whole property, exclusive use',
+      altro: 'Other',
+    },
+    eventTypePlaceholder: 'Select...',
+    consent: {
+      text: 'I consent to the processing of my personal data in order to answer this enquiry.',
+      linkText: 'Read the Privacy Policy',
+    },
+    submit: 'Send enquiry',
+    submitting: 'Sending...',
+    errors: {
+      nameRequired: 'Please enter your name.',
+      emailRequired: 'Please enter your email.',
+      emailInvalid: 'Please check the email format.',
+      startDateRequired: 'Please choose an arrival date.',
+      startDateInPast: 'The arrival date cannot be in the past.',
+      endDateRequired: 'Please choose a departure date.',
+      endDateBeforeStart: 'Departure must be on or after arrival.',
+      eventTypeRequired: 'Please select the type of stay.',
+      consentRequired: 'You must consent to data processing before sending.',
+      summaryTitle: 'Please check the highlighted fields:',
+    },
+    success: {
+      title: 'Enquiry sent',
+      body: 'Thank you! We will reply shortly with availability and a quote.',
+      again: 'Send another enquiry',
+    },
+    failure: {
+      title: 'Could not send',
+      body: 'We could not send your enquiry. Please contact us directly:',
+      retry: 'Try again',
+    },
+    notConfigured: 'The form is not connected yet. In the meantime, contact us directly:',
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'About Us',

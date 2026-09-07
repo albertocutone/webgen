@@ -57,6 +57,17 @@ export default [
   {
     files: ['tests/**/*.{js,jsx,cjs}'],
     languageOptions: { globals: { ...globals.jest, ...globals.node } },
+    rules: {
+      // `import it from '.../it/site.js'` silently shadows Jest's `it()` and
+      // fails the whole suite with "(0, _site.default) is not a function".
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "ImportDefaultSpecifier[local.name='it']",
+          message: "Importing as `it` shadows Jest's it(). Use `itContent` instead.",
+        },
+      ],
+    },
   },
 
   // Prettier last so it can switch off stylistic rules
