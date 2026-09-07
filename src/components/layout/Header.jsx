@@ -7,7 +7,9 @@ import LanguageToggle from './LanguageToggle.jsx'
 const MENU_ID = 'primary-navigation'
 
 function navLinkClass({ isActive }) {
-  const base = 'text-sm transition-colors hover:text-olive-700'
+  // whitespace-nowrap: several labels are two words ("Pet Friendly", "Come
+  // Raggiungerci") and wrapped mid-item at desktop widths.
+  const base = 'whitespace-nowrap text-sm transition-colors hover:text-olive-700'
   return isActive ? `${base} text-olive-800 font-semibold` : `${base} text-stone-muted`
 }
 
@@ -55,15 +57,16 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         <Link
           to="/"
-          className="font-display text-xl leading-none text-olive-700 md:text-2xl"
+          className="whitespace-nowrap text-xl leading-none text-olive-700 md:text-2xl"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           {t.siteName}
         </Link>
 
-        {/* Desktop navigation */}
-        <nav className="hidden lg:block" aria-label={t.nav.home}>
-          <ul className="flex items-center gap-6">
+        {/* Desktop navigation. Eight items plus logo, toggle and CTA do not fit
+            at lg (1024px) — they wrapped — so full nav starts at xl. */}
+        <nav className="hidden xl:block" aria-label={t.nav.home}>
+          <ul className="flex items-center gap-5">
             {NAV_ROUTES.map((route) => (
               <li key={route.path}>
                 <NavLink to={route.path} className={navLinkClass} end={route.path === '/'}>
@@ -79,7 +82,7 @@ export default function Header() {
 
           <Link
             to={BOOKING_PATH}
-            className="rounded-full bg-terracotta-600 px-4 py-2 text-sm font-medium text-limestone-50 transition-colors hover:bg-terracotta-700"
+            className="rounded-full bg-terracotta-600 px-4 py-2 text-sm font-medium whitespace-nowrap text-limestone-50 transition-colors hover:bg-terracotta-700"
           >
             {t.actions.bookNow}
           </Link>
@@ -87,7 +90,7 @@ export default function Header() {
           <button
             ref={toggleRef}
             type="button"
-            className="lg:hidden"
+            className="xl:hidden"
             aria-expanded={open}
             aria-controls={MENU_ID}
             aria-label={open ? t.actions.closeMenu : t.actions.openMenu}
@@ -104,7 +107,7 @@ export default function Header() {
       {open && (
         <nav
           id={MENU_ID}
-          className="border-t border-limestone-200 bg-limestone-50 lg:hidden"
+          className="border-t border-limestone-200 bg-limestone-50 xl:hidden"
           aria-label={t.actions.openMenu}
         >
           <ul className="mx-auto flex max-w-6xl flex-col px-6 py-2">

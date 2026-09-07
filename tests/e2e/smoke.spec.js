@@ -29,7 +29,43 @@ test.describe('smoke', () => {
 
   test('an unknown path renders the 404 page', async ({ page }) => {
     await page.goto('/nessuna-pagina-qui')
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(/non trovata|not found/i)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Pagina non trovata')
+  })
+})
+
+test.describe('locale', () => {
+  test('renders Italian by default and switches to English', async ({ page }) => {
+    await page.goto('/chi-siamo')
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Chi Siamo')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'it')
+
+    await page.getByRole('button', { name: 'English' }).first().click()
+
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('About Us')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  })
+
+  test('remembers the language across a reload', async ({ page }) => {
+    await page.goto('/')
+    await page.getByRole('button', { name: 'English' }).first().click()
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+
+    await page.reload()
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  })
+})
+
+test.describe('mobile navigation', () => {
+  test.skip(({ isMobile }) => !isMobile, 'overlay menu only exists below xl')
+
+  test('opens the overlay and navigates', async ({ page }) => {
+    await page.goto('/')
+
+    await page.getByRole('button', { name: 'Apri il menu' }).click()
+    await page.getByRole('link', { name: 'Territorio' }).first().click()
+
+    await expect(page).toHaveURL(/\/territorio$/)
+    await expect(page.getByRole('button', { name: 'Apri il menu' })).toBeVisible()
   })
 })
 

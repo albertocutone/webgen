@@ -19,6 +19,10 @@ export default defineConfig({
     baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    // Pinned: the app picks its locale from navigator.language, so an
+    // en-US runner would silently render the English site and make any
+    // Italian assertion locale-dependent. Italian is the primary audience.
+    locale: 'it-IT',
   },
 
   projects: [
