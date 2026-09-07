@@ -38,3 +38,6 @@ tmp-fb/
 # and the generated manifest that tests import must match what is in the repo.
 # Only the generated variants are ignored.
 public/images/*.webp
+# Generated from assets/brand/logo.jpg by scripts/build-logo.mjs
+public/favicon.png
+public/apple-touch-icon.png

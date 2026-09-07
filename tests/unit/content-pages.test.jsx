@@ -165,3 +165,38 @@ describe('Come Raggiungerci', () => {
     }
   })
 })
+
+describe('brand mark', () => {
+  it('sits inside the home link in the header', () => {
+    renderApp('/')
+    const banner = screen.getByRole('banner')
+    const homeLink = within(banner).getAllByRole('link', { name: itContent.siteName })[0]
+    const img = homeLink.querySelector('img')
+    expect(img).not.toBeNull()
+    expect(img.getAttribute('src')).toContain('logo.webp')
+  })
+
+  it('is marked decorative so the wordmark is not announced twice', () => {
+    renderApp('/')
+    const img = screen.getByRole('banner').querySelector('img[src*="logo"]')
+    // alt="" removes it from the accessibility tree; the adjacent text names
+    // the venue already.
+    expect(img).toHaveAttribute('alt', '')
+    expect(
+      within(screen.getByRole('banner')).getAllByRole('link', { name: itContent.siteName }).length,
+    ).toBeGreaterThan(0)
+  })
+
+  it('loads eagerly, being above the fold', () => {
+    renderApp('/')
+    const img = screen.getByRole('banner').querySelector('img[src*="logo"]')
+    expect(img).toHaveAttribute('loading', 'eager')
+  })
+
+  it('reserves its box to avoid shifting the header', () => {
+    renderApp('/')
+    const img = screen.getByRole('banner').querySelector('img[src*="logo"]')
+    expect(img).toHaveAttribute('width', '256')
+    expect(img).toHaveAttribute('height', '374')
+  })
+})

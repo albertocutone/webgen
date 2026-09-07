@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { NAV_ROUTES, BOOKING_PATH } from '../../routes.js'
 import { useLocale } from '../../hooks/useLocale.js'
 import LanguageToggle from './LanguageToggle.jsx'
+import Image from '../common/Image.jsx'
 
 const MENU_ID = 'primary-navigation'
 
@@ -55,12 +56,26 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-limestone-200 bg-limestone-50/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-        <Link
-          to="/"
-          className="whitespace-nowrap text-base leading-none text-olive-700 sm:text-xl md:text-2xl"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          {t.siteName}
+        <Link to="/" className="flex items-center gap-2 sm:gap-3">
+          {/*
+            The mark is decorative here: the adjacent wordmark already names the
+            venue, so alt="" avoids a screen reader announcing it twice.
+          */}
+          <Image
+            src="images/logo.webp"
+            alt=""
+            width={256}
+            height={374}
+            priority
+            sizes="44px"
+            className="h-7 w-auto sm:h-9 md:h-11"
+          />
+          <span
+            className="whitespace-nowrap text-base leading-none text-olive-700 sm:text-xl md:text-2xl"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            {t.siteName}
+          </span>
         </Link>
 
         {/* Desktop navigation. Eight items plus logo, toggle and CTA do not fit

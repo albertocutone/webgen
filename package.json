@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run images && npm run build:client && node scripts/postbuild.mjs && npm run build:ssr && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs",
+    "build": "npm run logo && npm run images && npm run build:client && node scripts/postbuild.mjs && npm run build:ssr && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -23,7 +23,8 @@
     "verify": "npm run lint && npm run format:check && npm test && npm run build",
     "build:client": "vite build",
     "build:ssr": "vite build --ssr src/entry-server.jsx --outDir dist-ssr",
-    "images": "node scripts/optimize-images.mjs"
+    "images": "node scripts/optimize-images.mjs",
+    "logo": "node scripts/build-logo.mjs"
   },
   "dependencies": {
     "framer-motion": "^13.2.0",
