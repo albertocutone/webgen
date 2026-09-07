@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
     define: {
       __WEB3FORMS_KEY__: JSON.stringify(env.VITE_WEB3FORMS_KEY ?? ''),
       __TURNSTILE_SITE_KEY__: JSON.stringify(env.VITE_TURNSTILE_SITE_KEY ?? ''),
+      __BASE_URL__: JSON.stringify(base),
     },
     build: {
       outDir: 'dist',

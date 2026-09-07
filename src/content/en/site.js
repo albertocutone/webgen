@@ -133,6 +133,46 @@ export default {
     ],
   },
 
+  home: {
+    heroAlt: 'The masseria seen from the olive grove',
+    heroCta: 'Check availability',
+    heroSecondary: 'See the apartments',
+  },
+
+  apartments: {
+    // PLACEHOLDER units — the real inventory is to be confirmed (docs/CONTENT.md).
+    intro: 'Each unit is self-contained, with its own entrance and a view over the countryside.',
+    guestsLabel: 'guests',
+    enquire: 'Enquire',
+    items: [
+      {
+        id: 'trullo',
+        name: 'Il Trullo',
+        guests: 2,
+        description: 'A stone double room with a star-vaulted ceiling and private patio.',
+      },
+      {
+        id: 'uliveto',
+        name: 'Uliveto',
+        guests: 4,
+        description: 'Two-bedroom apartment with an eat-in kitchen looking over the olive grove.',
+      },
+      {
+        id: 'corte',
+        name: 'La Corte',
+        guests: 6,
+        description: 'A larger unit around the inner courtyard, well suited to families.',
+      },
+      {
+        id: 'intera',
+        name: 'The whole masseria',
+        guests: 12,
+        description:
+          'Every unit exclusively, with the shared spaces and garden, for weddings and events.',
+      },
+    ],
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'About Us',

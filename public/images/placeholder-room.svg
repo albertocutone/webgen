@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Placeholder">
+  <rect width="800" height="600" fill="#f2ede4"/>
+  <rect x="60" y="330" width="680" height="200" rx="10" fill="#d3c5ae"/>
+  <rect x="110" y="250" width="180" height="90" rx="8" fill="#e5dccd"/>
+  <rect x="510" y="250" width="180" height="90" rx="8" fill="#e5dccd"/>
+  <rect x="300" y="120" width="200" height="140" rx="6" fill="#9aa87a"/>
+  <g fill="#6b6259" font-family="Georgia, serif" text-anchor="middle">
+    <text x="400" y="575" font-size="24">PLACEHOLDER — foto da fornire</text>
+  </g>
+</svg>

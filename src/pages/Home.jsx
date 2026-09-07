@@ -1,10 +1,11 @@
-import PageIntro from '../components/common/PageIntro.jsx'
+import Hero from '../components/common/Hero.jsx'
 import Faq from '../components/common/Faq.jsx'
 
 export default function Home() {
   return (
-    <PageIntro id="home">
+    <>
+      <Hero />
       <Faq />
-    </PageIntro>
+    </>
   )
 }

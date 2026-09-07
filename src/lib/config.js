@@ -1,4 +1,4 @@
-/* global __WEB3FORMS_KEY__, __TURNSTILE_SITE_KEY__ */
+/* global __WEB3FORMS_KEY__, __TURNSTILE_SITE_KEY__, __BASE_URL__ */
 
 /**
  * Build-time configuration.
@@ -20,3 +20,6 @@ export const WEB3FORMS_KEY = typeof __WEB3FORMS_KEY__ === 'string' ? __WEB3FORMS
 /** Cloudflare Turnstile site key. Empty disables the widget (design §5.4). */
 export const TURNSTILE_SITE_KEY =
   typeof __TURNSTILE_SITE_KEY__ === 'string' ? __TURNSTILE_SITE_KEY__ : ''
+
+/** Vite's `base`. '/' under Jest, where the define does not run. */
+export const BASE_URL = typeof __BASE_URL__ === 'string' ? __BASE_URL__ : '/'

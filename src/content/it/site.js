@@ -133,6 +133,46 @@ export default {
     ],
   },
 
+  home: {
+    heroAlt: 'La masseria vista dagli ulivi',
+    heroCta: 'Richiedi disponibilità',
+    heroSecondary: 'Scopri gli appartamenti',
+  },
+
+  apartments: {
+    // PLACEHOLDER units — the real inventory is to be confirmed (docs/CONTENT.md).
+    intro: 'Ogni alloggio è indipendente, con ingresso autonomo e vista sulla campagna.',
+    guestsLabel: 'ospiti',
+    enquire: 'Richiedi',
+    items: [
+      {
+        id: 'trullo',
+        name: 'Il Trullo',
+        guests: 2,
+        description: 'Camera matrimoniale in pietra con volta a stella e patio privato.',
+      },
+      {
+        id: 'uliveto',
+        name: 'Uliveto',
+        guests: 4,
+        description: 'Appartamento con due camere, cucina abitabile e affaccio sull’uliveto.',
+      },
+      {
+        id: 'corte',
+        name: 'La Corte',
+        guests: 6,
+        description: 'Alloggio ampio attorno alla corte interna, ideale per famiglie.',
+      },
+      {
+        id: 'intera',
+        name: 'Intera masseria',
+        guests: 12,
+        description:
+          'Tutti gli alloggi in esclusiva, con spazi comuni e giardino, per matrimoni ed eventi.',
+      },
+    ],
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'Chi Siamo',
