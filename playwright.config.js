@@ -27,7 +27,11 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: `BASE_PATH=/ npm run build && npx vite preview --port ${PORT} --strictPort`,
+    command: `npm run build && npx vite preview --port ${PORT} --strictPort`,
+    // Must be passed via env, not as a `VAR=x cmd1 && cmd2` prefix — that form
+    // scopes the variable to cmd1 only, leaving preview serving under /webgen/
+    // while the specs request /.
+    env: { BASE_PATH: '/' },
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
