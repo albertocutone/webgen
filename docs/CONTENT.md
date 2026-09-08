@@ -51,11 +51,25 @@ garden with the castle (hero), two event table settings, a produce buffet and
 the terrace. Drop more in as `<name>.jpg` and the build produces responsive
 WebP automatically.
 
-Still worth having: a photograph per room type, so the Appartamenti cards stop
-using the placeholder. Name them after the room ids in
-`src/content/it/site.js` — `doppia-economy.jpg`, `doppia.jpg`,
-`tripla-giardino.jpg`, `tripla-superior.jpg`, `familiare-superior.jpg` — and
-they will appear with no code change.
+Still worth having: a photograph per room. Each room has its own folder and
+**any filename works** — just drop files in and rebuild:
+
+```bash
+cp ~/Desktop/IMG_4821.jpg assets/photos/rooms/tripla-giardino/
+npm run images
+```
+
+| Folder                                    | Room                             |
+| ----------------------------------------- | -------------------------------- |
+| `assets/photos/rooms/doppia-economy/`     | Camera Doppia Economy            |
+| `assets/photos/rooms/doppia/`             | Camera Doppia                    |
+| `assets/photos/rooms/tripla-giardino/`    | Camera Tripla con Vista Giardino |
+| `assets/photos/rooms/tripla-superior/`    | Camera Tripla Superior           |
+| `assets/photos/rooms/familiare-superior/` | Camera Familiare Superior        |
+
+The first file alphabetically becomes that room's card; the rest are processed
+and ready for a gallery. Until a folder has something in it the card shows a
+placeholder reading "Foto in arrivo". See `assets/photos/rooms/README.md`.
 
 ## 4. Copy — partly done
 
