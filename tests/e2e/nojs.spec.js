@@ -52,14 +52,25 @@ test.describe('prerendered HTML (no JavaScript)', () => {
     await expect(page.locator('main')).toBeVisible()
 
     // toBeVisible() alone is not enough: Playwright treats an opacity-0
-    // element as visible. Animations must therefore be asserted on computed
-    // opacity, or a reveal left at 0 would sail past the check.
+    // element as visible, so a reveal left at 0 would sail straight past it.
+    //
+    // Polled rather than sampled once: the hero's CSS entrance animation is
+    // still running on first paint — it was caught mid-flight at 0.29 — and
+    // the property worth asserting is that content *settles* fully opaque,
+    // which is what a crawler that waits for render actually sees.
     for (const sel of ['h1', 'main', 'footer']) {
-      const opacity = await page
-        .locator(sel)
-        .first()
-        .evaluate((el) => getComputedStyle(el).opacity)
-      expect(Number(opacity)).toBe(1)
+      await expect
+        .poll(
+          async () =>
+            Number(
+              await page
+                .locator(sel)
+                .first()
+                .evaluate((el) => getComputedStyle(el).opacity),
+            ),
+          { timeout: 5000 },
+        )
+        .toBe(1)
     }
   })
 
