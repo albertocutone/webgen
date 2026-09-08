@@ -37,7 +37,7 @@ export default function Image({
   priority = false,
   sizes = '100vw',
 }) {
-  const entry = name ? manifest[name] : null
+  const entry = name ? (manifest[name] ?? null) : null
 
   const loadingProps = {
     loading: priority ? 'eager' : 'lazy',

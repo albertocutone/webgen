@@ -3,6 +3,7 @@ import PageIntro from '../components/common/PageIntro.jsx'
 import Image from '../components/common/Image.jsx'
 import { useLocale } from '../hooks/useLocale.js'
 import { BOOKING_PATH } from '../routes.js'
+import { roomLeadImage } from '../lib/images.js'
 
 function UnitCard({ unit }) {
   const { t } = useLocale()
@@ -10,7 +11,9 @@ function UnitCard({ unit }) {
   return (
     <article className="overflow-hidden rounded-lg border border-limestone-200 bg-limestone-100">
       <Image
-        name={unit.id}
+        // Whatever the owner drops into assets/photos/rooms/<id>/ becomes this
+        // card's photo; until then the placeholder stands in.
+        name={roomLeadImage(unit.id)}
         src="images/placeholder-room.svg"
         alt={unit.name}
         width={800}
