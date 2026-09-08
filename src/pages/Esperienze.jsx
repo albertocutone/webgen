@@ -3,6 +3,7 @@ import PageIntro from '../components/common/PageIntro.jsx'
 import Image from '../components/common/Image.jsx'
 import { useLocale } from '../hooks/useLocale.js'
 import { BOOKING_PATH } from '../routes.js'
+import Reveal from '../components/common/Reveal.jsx'
 
 export default function Esperienze() {
   const { t } = useLocale()
@@ -35,21 +36,20 @@ export default function Esperienze() {
 
         <h2 className="mt-14 text-2xl text-olive-700">{e.galleryHeading}</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {e.photos.map((photo) => (
-            <figure
-              key={photo.id}
-              className="overflow-hidden rounded-lg border border-limestone-200"
-            >
-              <Image
-                name={photo.id}
-                src="images/placeholder-room.svg"
-                alt={photo.alt}
-                width={800}
-                height={600}
-                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                className="aspect-[3/4] w-full object-cover"
-              />
-            </figure>
+          {e.photos.map((photo, i) => (
+            <Reveal key={photo.id} delay={i * 80}>
+              <figure className="group overflow-hidden rounded-xl border border-limestone-200">
+                <Image
+                  name={photo.id}
+                  src="images/placeholder-room.svg"
+                  alt={photo.alt}
+                  width={800}
+                  height={600}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </figure>
+            </Reveal>
           ))}
         </div>
 

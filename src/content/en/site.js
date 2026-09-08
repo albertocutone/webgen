@@ -250,6 +250,36 @@ export default {
     parkingNote: 'Parking is free on site.',
   },
 
+  pillars: {
+    heading: 'The masseria',
+    items: [
+      {
+        id: 'camere',
+        title: 'Stay',
+        body: 'Five rooms in the farmhouse, with breakfast, Wi-Fi and parking.',
+        to: '/appartamenti',
+        cta: 'See the rooms',
+        photo: 'terrazza',
+      },
+      {
+        id: 'eventi',
+        title: 'Celebrate',
+        body: 'Weddings, christenings and private parties in the garden, by booking.',
+        to: '/esperienze',
+        cta: 'Discover events',
+        photo: 'evento-tavola',
+      },
+      {
+        id: 'territorio',
+        title: 'Explore',
+        body: 'The Matese, the village of Prata Sannita and the castle facing the garden.',
+        to: '/territorio',
+        cta: 'See the area',
+        photo: 'buffet',
+      },
+    ],
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'About Us',

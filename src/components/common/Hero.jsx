@@ -8,6 +8,9 @@ import Image from './Image.jsx'
  *
  * The image is marked `priority` because it is the LCP element — lazy-loading
  * it would directly cost the Core Web Vitals target.
+ *
+ * Entrance animation is CSS keyframes, not JS: it always resolves to the
+ * visible state, so the prerendered HTML stays readable without scripts.
  */
 export default function Hero() {
   const { t } = useLocale()
@@ -22,7 +25,7 @@ export default function Hero() {
         height={900}
         priority
         sizes="100vw"
-        className="absolute inset-0 -z-10 size-full object-cover"
+        className="animate-drift absolute inset-0 -z-10 size-full object-cover"
       />
       {/*
         Scrim: keeps text legible whatever the eventual photograph looks like.
@@ -34,20 +37,25 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="mx-auto flex min-h-[60vh] max-w-4xl flex-col justify-center px-6 py-24 text-limestone-50 md:min-h-[70vh]">
-        <h1 className="text-4xl drop-shadow-sm md:text-6xl">{t.pages.home.title}</h1>
-        <p className="mt-4 max-w-2xl text-lg drop-shadow-sm md:text-xl">{t.pages.home.lead}</p>
+      <div className="mx-auto flex min-h-[68vh] max-w-4xl flex-col justify-center px-6 py-24 text-limestone-50 md:min-h-[78vh]">
+        <h1 className="animate-rise text-4xl drop-shadow-sm md:text-6xl">{t.pages.home.title}</h1>
+        <p
+          className="animate-rise mt-4 max-w-2xl text-lg drop-shadow-sm md:text-xl"
+          style={{ animationDelay: '120ms' }}
+        >
+          {t.pages.home.lead}
+        </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: '240ms' }}>
           <Link
             to={BOOKING_PATH}
-            className="rounded-full bg-terracotta-600 px-6 py-3 font-medium text-limestone-50 transition-colors hover:bg-terracotta-700"
+            className="rounded-full bg-terracotta-600 px-6 py-3 font-medium text-limestone-50 shadow-lg shadow-stone-ink/20 transition-all hover:-translate-y-0.5 hover:bg-terracotta-700 hover:shadow-xl"
           >
             {t.home.heroCta}
           </Link>
           <Link
             to="/appartamenti"
-            className="rounded-full border border-limestone-50 px-6 py-3 font-medium text-limestone-50 transition-colors hover:bg-limestone-50/15"
+            className="rounded-full border border-limestone-50/80 px-6 py-3 font-medium text-limestone-50 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-limestone-50/15"
           >
             {t.home.heroSecondary}
           </Link>

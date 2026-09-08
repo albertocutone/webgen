@@ -252,6 +252,36 @@ export default {
     parkingNote: 'Il parcheggio è gratuito in struttura.',
   },
 
+  pillars: {
+    heading: 'La masseria',
+    items: [
+      {
+        id: 'camere',
+        title: 'Dormire',
+        body: 'Cinque camere nel casale, con colazione, Wi-Fi e parcheggio.',
+        to: '/appartamenti',
+        cta: 'Vedi le camere',
+        photo: 'terrazza',
+      },
+      {
+        id: 'eventi',
+        title: 'Festeggiare',
+        body: 'Matrimoni, battesimi e feste private nel giardino, su prenotazione.',
+        to: '/esperienze',
+        cta: 'Scopri gli eventi',
+        photo: 'evento-tavola',
+      },
+      {
+        id: 'territorio',
+        title: 'Esplorare',
+        body: 'Il Matese, il borgo di Prata Sannita e il castello davanti al giardino.',
+        to: '/territorio',
+        cta: 'Vedi il territorio',
+        photo: 'buffet',
+      },
+    ],
+  },
+
   nav: {
     home: 'Home',
     chiSiamo: 'Chi Siamo',

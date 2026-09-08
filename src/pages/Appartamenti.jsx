@@ -4,23 +4,26 @@ import Image from '../components/common/Image.jsx'
 import { useLocale } from '../hooks/useLocale.js'
 import { BOOKING_PATH } from '../routes.js'
 import { roomLeadImage } from '../lib/images.js'
+import Reveal from '../components/common/Reveal.jsx'
 
 function UnitCard({ unit }) {
   const { t } = useLocale()
 
   return (
-    <article className="overflow-hidden rounded-lg border border-limestone-200 bg-limestone-100">
-      <Image
-        // Whatever the owner drops into assets/photos/rooms/<id>/ becomes this
-        // card's photo; until then the placeholder stands in.
-        name={roomLeadImage(unit.id)}
-        src="images/placeholder-room.svg"
-        alt={unit.name}
-        width={800}
-        height={600}
-        sizes="(min-width: 768px) 33vw, 100vw"
-        className="aspect-[4/3] w-full object-cover"
-      />
+    <article className="group h-full overflow-hidden rounded-xl border border-limestone-200 bg-limestone-100 transition-all duration-300 hover:-translate-y-1 hover:border-olive-400 hover:shadow-xl hover:shadow-stone-ink/10">
+      <div className="overflow-hidden">
+        <Image
+          // Whatever the owner drops into assets/photos/rooms/<id>/ becomes this
+          // card's photo; until then the placeholder stands in.
+          name={roomLeadImage(unit.id)}
+          src="images/placeholder-room.svg"
+          alt={unit.name}
+          width={800}
+          height={600}
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
       <div className="p-5">
         <h3 className="text-xl text-olive-700">{unit.name}</h3>
         <p className="mt-1 text-sm text-stone-muted">
@@ -60,8 +63,10 @@ export default function Appartamenti() {
         </ul>
 
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {t.apartments.items.map((unit) => (
-            <UnitCard key={unit.id} unit={unit} />
+          {t.apartments.items.map((unit, i) => (
+            <Reveal key={unit.id} delay={i * 80}>
+              <UnitCard unit={unit} />
+            </Reveal>
           ))}
         </div>
       </section>

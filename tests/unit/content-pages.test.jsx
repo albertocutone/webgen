@@ -200,3 +200,39 @@ describe('brand mark', () => {
     expect(img).toHaveAttribute('height', '374')
   })
 })
+
+describe('Home pillars', () => {
+  it('routes to each of the three offerings', () => {
+    renderApp('/')
+    for (const item of itContent.pillars.items) {
+      const link = screen.getByRole('link', { name: new RegExp(item.title) })
+      expect(link).toHaveAttribute('href', item.to)
+    }
+  })
+
+  it('gives each pillar a heading and body', () => {
+    renderApp('/')
+    for (const item of itContent.pillars.items) {
+      expect(screen.getByRole('heading', { name: item.title, level: 3 })).toBeInTheDocument()
+      expect(screen.getByText(item.body)).toBeInTheDocument()
+    }
+  })
+
+  it('marks pillar images decorative, the link text already naming them', () => {
+    renderApp('/')
+    const section = screen.getByRole('region', { name: itContent.pillars.heading })
+    for (const img of section.querySelectorAll('img')) {
+      expect(img).toHaveAttribute('alt', '')
+    }
+  })
+})
+
+describe('Reveal', () => {
+  it('renders content with no hidden state applied server-side', () => {
+    // jsdom has no IntersectionObserver, which is exactly the no-JS shape:
+    // Reveal must leave the content untouched rather than hiding it.
+    renderApp('/')
+    expect(document.querySelectorAll('[data-reveal="hidden"]')).toHaveLength(0)
+    expect(screen.getByText(itContent.faq.heading)).toBeVisible()
+  })
+})

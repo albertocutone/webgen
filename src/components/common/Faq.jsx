@@ -1,4 +1,5 @@
 import { useLocale } from '../../hooks/useLocale.js'
+import Reveal from './Reveal.jsx'
 
 /**
  * FAQ accordion (F8).
@@ -11,7 +12,7 @@ export default function Faq() {
   const { t } = useLocale()
 
   return (
-    <section className="mx-auto max-w-3xl px-6 py-16" aria-labelledby="faq-heading">
+    <Reveal as="section" className="mx-auto max-w-3xl px-6 py-16" aria-labelledby="faq-heading">
       <h2 id="faq-heading" className="text-3xl text-olive-700">
         {t.faq.heading}
       </h2>
@@ -34,6 +35,6 @@ export default function Faq() {
           </div>
         ))}
       </dl>
-    </section>
+    </Reveal>
   )
 }

@@ -46,12 +46,28 @@ test.describe('prerendered HTML (no JavaScript)', () => {
     // Text inside a collapsed <details> is still in the document.
     await expect(page.locator('dd').first()).not.toBeEmpty()
   })
-  test('content is visible, not just present, without JS', async ({ page }) => {
+  test('content is opaque, not just present, without JS', async ({ page }) => {
     await page.goto('/')
-    // A page transition that starts at opacity 0 would be baked into the
-    // prerendered HTML and hide everything from non-executing crawlers.
     await expect(page.locator('h1')).toBeVisible()
     await expect(page.locator('main')).toBeVisible()
+
+    // toBeVisible() alone is not enough: Playwright treats an opacity-0
+    // element as visible. Animations must therefore be asserted on computed
+    // opacity, or a reveal left at 0 would sail past the check.
+    for (const sel of ['h1', 'main', 'footer']) {
+      const opacity = await page
+        .locator(sel)
+        .first()
+        .evaluate((el) => getComputedStyle(el).opacity)
+      expect(Number(opacity)).toBe(1)
+    }
+  })
+
+  test('nothing is left hidden by a scroll reveal', async ({ page }) => {
+    await page.goto('/')
+    // Reveal only applies its hidden state from JavaScript, so with scripts
+    // off there must be no hidden elements anywhere on the page.
+    await expect(page.locator('[data-reveal="hidden"]')).toHaveCount(0)
   })
   test('the social preview image is declared and actually resolves', async ({ page, request }) => {
     await page.goto('/')
