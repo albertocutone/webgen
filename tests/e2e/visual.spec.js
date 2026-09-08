@@ -5,31 +5,21 @@ import { VISUAL_ROUTES } from './routes.js'
 // rendering can be reviewed by eye. The development machine cannot run
 // Playwright browsers (endpoint security kills them), so CI is the only place
 // the rendered page can actually be looked at.
+//
+// Captured with reduced motion emulated. Scroll reveals are driven by
+// IntersectionObserver, which never fires for content below the fold in a page
+// that was never scrolled: the first screenshots after adding reveals showed
+// the home page as a hero above a large blank area. Reveal already opts out
+// entirely under prefers-reduced-motion, so emulating it gives fully settled,
+// fully visible content with no mid-animation frames — deterministic review
+// shots, using a code path the site genuinely has rather than a test-only one.
+test.use({ reducedMotion: 'reduce' })
+
 test.describe('visual review', () => {
   for (const { path, name } of VISUAL_ROUTES) {
     test(`capture ${name}`, async ({ page }, testInfo) => {
       await page.goto(path)
       await page.waitForLoadState('networkidle')
-
-      // Scroll the whole page before capturing. Scroll reveals are driven by
-      // IntersectionObserver, which never fires for content below the fold in
-      // a page that was never scrolled — a fullPage screenshot would then show
-      // those sections still at opacity 0 and the review would be worthless.
-      await page.evaluate(async () => {
-        const step = window.innerHeight * 0.8
-        for (let y = 0; y < document.body.scrollHeight; y += step) {
-          window.scrollTo(0, y)
-          await new Promise((r) => setTimeout(r, 60))
-        }
-        window.scrollTo(0, 0)
-        await new Promise((r) => setTimeout(r, 400))
-      })
-
-      // Let the reveal transitions finish so nothing is caught mid-fade.
-      await page.waitForFunction(() => !document.querySelector('[data-reveal="hidden"]'), null, {
-        timeout: 5000,
-      })
-      await page.waitForTimeout(700)
 
       await page.screenshot({
         path: `screenshots/${testInfo.project.name}-${name}.png`,
